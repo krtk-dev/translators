@@ -11,7 +11,7 @@ const Navigation = () => {
     <NavigationContainer
       theme={{
         ...DefaultTheme,
-        colors: {...DefaultTheme.colors, background: COLORS.black},
+        colors: {...DefaultTheme.colors, background: COLORS.white},
       }}>
       <RootStackNavigation />
     </NavigationContainer>
