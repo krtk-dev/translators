@@ -1,14 +1,19 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import HomeScreenHeader from './HomeScreenHeader';
 
 const HomeScreen = () => {
   return (
-    <View style={{flex: 1}}>
-      <Text>Home</Text>
+    <View style={styles.container}>
+      <HomeScreenHeader />
     </View>
   );
 };
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

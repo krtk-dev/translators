@@ -3,8 +3,9 @@ import RootStackNavigation, {RootStackParamList} from './RootStackNavigation';
 
 import React from 'react';
 import {COLORS} from '../constants/styles';
+import {DrawerParamList} from './HomeDrawerNavigation';
 
-export type NavigationParamList = RootStackParamList;
+export type NavigationParamList = RootStackParamList & DrawerParamList;
 
 const Navigation = () => {
   return (

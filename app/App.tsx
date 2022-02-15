@@ -22,7 +22,12 @@ const App = () => {
     <SafeAreaProvider>
       <HistoryProvider>
         <CardSequenceProvider>
-          <StatusBar barStyle="light-content" />
+          <StatusBar
+            barStyle="light-content"
+            translucent
+            animated
+            backgroundColor="transparent"
+          />
           <Navigation />
         </CardSequenceProvider>
       </HistoryProvider>
