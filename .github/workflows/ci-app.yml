@@ -1,0 +1,40 @@
+name: CI App
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - "app/**"
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "app/**"
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest]
+        node: ["16"]
+    name: Node ${{ matrix.node }} (${{ matrix.platform }})
+    runs-on: ${{ matrix.platform }}
+    defaults:
+      run:
+        working-directory: app
+       
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install modules
+        run: yarn
+
+      - name: Run lint
+        run: yarn lint
+
+      - name: Run test
+        run: yarn test
