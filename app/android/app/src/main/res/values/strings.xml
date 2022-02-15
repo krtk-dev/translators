@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">app</string>
+    <string name="app_name">3가지 번역기</string>
+    <string name="RNB_GOOGLE_PLAY_LICENSE_KEY">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlR+X7ZIkVhBBAsCtQYWVsbfKZdxhAnHLTXdK+dmdF/2rP0WzzlG/7IhGhbHijIhQ0t7JjJheqYdNTzfsUYzgDqNoeVdOSfLFUu3DDXKl5YtBPxC4YqU2PH4x+ftM926If/4deU+gu9fDP3pL4ALj0Xr5oUpvmQiT0jW/LATE9TgQXhaD+E+TeCsXIjVrtTAOTRJjn1T8AL8RrDCDeNVz/EXxAgu8nM95AFhJUNnhmGIZ9tr1q2536hBggYEIDTAXGUGIADOHWoDJmj1+6Q0Loaje+X30dnZbS2oLOJngqaEPjbSxhLAh3LWdrvuV0NuAscY787oVuehU5wPz3+cdRQIDAQAB</string>
 </resources>

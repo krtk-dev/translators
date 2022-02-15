@@ -1,4 +1,4 @@
-package com.app;
+package com.koreanthinker.translators;
 
 import com.facebook.react.ReactActivity;
 
