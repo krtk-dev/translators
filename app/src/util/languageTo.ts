@@ -1,5 +1,7 @@
-export function initial2korean(init) {
-  switch (init) {
+import {Language} from '../constants/types';
+
+export const korean = (language: Language) => {
+  switch (language) {
     case 'kr':
       return '한국어';
     case 'en':
@@ -21,10 +23,11 @@ export function initial2korean(init) {
     default:
       return '오류';
   }
-}
+};
 
-export function kakaoLang2Naver(lang) {
-  switch (lang) {
+export const kakaoLanguage = (language: Language) => language;
+export const naverLanguage = (language: Language) => {
+  switch (language) {
     case 'kr':
       return 'ko';
     case 'jp':
@@ -32,11 +35,11 @@ export function kakaoLang2Naver(lang) {
     case 'cn':
       return 'zh-CN';
     default:
-      return lang;
+      return language;
   }
-}
-export function kakaoLang2Google(lang) {
-  switch (lang) {
+};
+export const googleLanguage = (language: Language) => {
+  switch (language) {
     case 'kr':
       return 'ko';
     case 'jp':
@@ -44,12 +47,11 @@ export function kakaoLang2Google(lang) {
     case 'cn':
       return 'zh-CN';
     default:
-      return lang;
+      return language;
   }
-}
-
-export function kakaoLang2TTS(lang) {
-  switch (lang) {
+};
+export const TTSLanguage = (language: Language) => {
+  switch (language) {
     case 'kr':
       return 'ko-KR';
     case 'en':
@@ -71,4 +73,4 @@ export function kakaoLang2TTS(lang) {
     default:
       return 'en-IE';
   }
-}
+};

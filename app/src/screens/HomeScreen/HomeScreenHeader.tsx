@@ -11,7 +11,7 @@ const HomeScreenHeader = () => {
   return (
     <View style={styles.container}>
       <Pressable onPress={() => openDrawer()} style={styles.menuBtn}>
-        <Icon name="menu" color={COLORS.white} size={16} />
+        <Icon name="menu" color={COLORS.white} size={24} />
       </Pressable>
       <Typography style={styles.title}>3가지 번역기 비교하다</Typography>
     </View>
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     height: 56 + STATUSBAR_HEIGHT,
     paddingTop: STATUSBAR_HEIGHT,
     backgroundColor: COLORS.red,
+    zIndex: 99,
   },
   menuBtn: {
     width: 56,

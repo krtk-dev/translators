@@ -11,6 +11,7 @@ import {STOREAGE_CARD_SEQUENCE_ID} from '../constants/values';
 
 export type CardSequenceContextType = {
   cardSequence: Translators[];
+  updateCardSequence: (data: Translators[]) => void;
 };
 
 export const CardSequenceContext = createContext<CardSequenceContextType>(

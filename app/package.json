@@ -34,6 +34,7 @@
     "react-native": "0.67.2",
     "react-native-draggable-flatlist": "^3.0.5",
     "react-native-gesture-handler": "^2.2.0",
+    "react-native-in-app-review": "^3.3.2",
     "react-native-material-menu": "^2.0.0",
     "react-native-reanimated": "^2.4.1",
     "react-native-safe-area-context": "^3.3.2",

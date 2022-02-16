@@ -1,11 +1,13 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import HomeScreenHeader from './HomeScreenHeader';
 
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <HomeScreenHeader />
+      <ScrollView>
+        <HomeScreenHeader />
+      </ScrollView>
     </View>
   );
 };

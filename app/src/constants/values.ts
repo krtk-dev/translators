@@ -6,7 +6,7 @@ export const IS_IOS = Platform.OS === 'ios';
 export const STOREAGE_HISTORYS_ID = '@HISTORYS';
 export const STOREAGE_CARD_SEQUENCE_ID = '@CARD_SEQUENCE';
 
-export const LANGUAGELIST = [
+export const LANGUAGES = [
   'kr',
   'en',
   'jp',
@@ -16,7 +16,7 @@ export const LANGUAGELIST = [
   'es',
   'fr',
   'it',
-];
+] as const;
 export const PLAYSTORE_URL =
   'https://play.google.com/store/apps/details?id=com.koreanthinker.translators';
 export const RATE_UNIT = 30;

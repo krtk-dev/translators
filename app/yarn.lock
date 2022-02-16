@@ -5693,6 +5693,11 @@ react-native-gesture-handler@^2.2.0:
     lodash "^4.17.21"
     prop-types "^15.7.2"
 
+react-native-in-app-review@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-in-app-review/-/react-native-in-app-review-3.3.2.tgz#a26bb8af46d63f7659c43333075c8f4d5bd13f3c"
+  integrity sha512-P1v8i479aevGu0bcVqVV7FMWXY6jBb1EAVp2RV7bWYIEDsxc+5rTq1Zg74OGMaT2nVXM62ehx8I0xrkuQJBVyA==
+
 react-native-material-menu@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-native-material-menu/-/react-native-material-menu-2.0.0.tgz#139f407a52fbc0d47e5351d50ac769e05812da5c"

@@ -6,6 +6,7 @@ import {LogBox} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import HistoryProvider from './src/context/HistoryContext';
 import CardSequenceProvider from './src/context/CardSequenceContex';
+import TranslateProvider from './src/context/TranslateContext';
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
@@ -22,13 +23,15 @@ const App = () => {
     <SafeAreaProvider>
       <HistoryProvider>
         <CardSequenceProvider>
-          <StatusBar
-            barStyle="light-content"
-            translucent
-            animated
-            backgroundColor="transparent"
-          />
-          <Navigation />
+          <TranslateProvider>
+            <StatusBar
+              barStyle="light-content"
+              translucent
+              animated
+              backgroundColor="transparent"
+            />
+            <Navigation />
+          </TranslateProvider>
         </CardSequenceProvider>
       </HistoryProvider>
     </SafeAreaProvider>

@@ -11,6 +11,8 @@ import {STOREAGE_HISTORYS_ID} from '../constants/values';
 
 export type HistoryContextType = {
   historys: History[];
+  removeHistory: (id: string) => void;
+  addHistory: (data: Omit<History, 'id'>) => void;
 };
 
 export const HistoryContext = createContext<HistoryContextType>({} as any);
