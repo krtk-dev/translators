@@ -50,7 +50,7 @@ export const googleLanguage = (language: Language) => {
       return language;
   }
 };
-export const TTSLanguage = (language: Language) => {
+export const ttsLanguage = (language: Language) => {
   switch (language) {
     case 'kr':
       return 'ko-KR';
@@ -73,4 +73,12 @@ export const TTSLanguage = (language: Language) => {
     default:
       return 'en-IE';
   }
+};
+
+export default {
+  korean,
+  ttsLanguage,
+  googleLanguage,
+  kakaoLanguage,
+  naverLanguage,
 };

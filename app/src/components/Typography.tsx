@@ -4,7 +4,11 @@ import React from 'react';
 import {COLORS} from '../constants/styles';
 
 const Typography: React.FC<TextProps> = ({...props}) => (
-  <Text {...props} style={[{color: COLORS.white}, props.style]} />
+  <Text
+    {...props}
+    adjustsFontSizeToFit={false}
+    style={[{color: COLORS.black}, props.style]}
+  />
 );
 
 export default Typography;
