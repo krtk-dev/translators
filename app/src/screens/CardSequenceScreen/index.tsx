@@ -1,14 +1,42 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useCallback, useContext} from 'react';
+import {COLORS} from '../../constants/styles';
+import CardSequenceScreenHeader from './CardSequenceScreenHeader';
+import DraggableFlatList, {
+  DragEndParams,
+} from 'react-native-draggable-flatlist';
+import {CardSequenceContext} from '../../context/CardSequenceContex';
+import CardSequenceTranslatorCard from './CardSequenceScreenTranslatorCard';
+import {Translator} from '../../constants/types';
 
-const CardSequenceSecreen = () => {
+const CardSequenceScreen = () => {
+  const {cardSequence, updateCardSequence} = useContext(CardSequenceContext);
+
+  const onDragEnd = useCallback(
+    ({data}: DragEndParams<Translator>) => {
+      updateCardSequence(data);
+    },
+    [updateCardSequence],
+  );
+
   return (
-    <View>
-      <Text>CardSequenceSecreen</Text>
+    <View style={styles.container}>
+      <CardSequenceScreenHeader />
+      <DraggableFlatList
+        data={cardSequence}
+        renderItem={props => <CardSequenceTranslatorCard {...props} />}
+        keyExtractor={item => item}
+        onDragEnd={onDragEnd}
+      />
     </View>
   );
 };
 
-export default CardSequenceSecreen;
+export default CardSequenceScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.red,
+  },
+});
