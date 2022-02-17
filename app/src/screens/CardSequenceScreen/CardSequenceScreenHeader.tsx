@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {COLORS, STATUSBAR_HEIGHT} from '../../constants/styles';
+import {COLORS} from '../../constants/styles';
 import Typography from '../../components/Typography';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import BaseButton from '../../components/BaseButton';
@@ -24,8 +24,7 @@ export default CardSequenceScreenHeader;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 56 + STATUSBAR_HEIGHT,
-    paddingTop: STATUSBAR_HEIGHT,
+    height: 56,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

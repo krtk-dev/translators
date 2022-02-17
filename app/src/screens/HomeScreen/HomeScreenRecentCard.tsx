@@ -5,7 +5,7 @@ import {History} from '../../constants/types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {TranslateContext} from '../../context/TranslateContext';
 import Typography from '../../components/Typography';
-import {RectButton} from 'react-native-gesture-handler';
+import BorderlessButton from '../../components/BorderlessButton';
 
 const HomeScreenRecentCard: React.FC<History> = props => {
   const {applyHistory} = useContext(TranslateContext);
@@ -16,9 +16,12 @@ const HomeScreenRecentCard: React.FC<History> = props => {
       <Typography style={styles.title}>최근검색</Typography>
       <Typography style={styles.text}>{text}</Typography>
       <View style={styles.footer}>
-        <RectButton onPress={() => applyHistory(props)} style={styles.icon}>
+        <BorderlessButton
+          onPress={() => applyHistory(props)}
+          style={styles.icon}
+        >
           <Icon color={COLORS.white} size={24} name="arrow-forward" />
-        </RectButton>
+        </BorderlessButton>
       </View>
     </View>
   );

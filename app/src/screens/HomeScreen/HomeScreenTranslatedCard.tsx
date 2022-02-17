@@ -4,7 +4,7 @@ import {Translator} from '../../constants/types';
 import {TranslateContext} from '../../context/TranslateContext';
 import {COLORS, SHADOW} from '../../constants/styles';
 import Typography from '../../components/Typography';
-import RectButton from '../../components/RectButton';
+import BorderlessButton from '../../components/BorderlessButton';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Clipboard from '@react-native-community/clipboard';
 import {Menu, MenuItem} from 'react-native-material-menu';
@@ -34,24 +34,24 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
       <Typography style={styles.title}>{translator.toUpperCase()}</Typography>
       <Typography style={styles.text}>{text}</Typography>
       <View style={styles.footer}>
-        <RectButton onPress={onTTS} style={styles.icon}>
+        <BorderlessButton onPress={onTTS} style={styles.icon}>
           <Icon color={COLORS.white} size={22} name="volume-up" />
-        </RectButton>
-        <RectButton
+        </BorderlessButton>
+        <BorderlessButton
           onPress={() => Clipboard.setString(text)}
           style={styles.icon}
         >
           <Icon color={COLORS.white} size={20} name="content-copy" />
-        </RectButton>
+        </BorderlessButton>
         <Menu
           visible={moreVisible}
           anchor={
-            <RectButton
+            <BorderlessButton
               onPress={() => setMoreVisible(true)}
               style={styles.icon}
             >
               <Icon color={COLORS.white} size={24} name="more-vert" />
-            </RectButton>
+            </BorderlessButton>
           }
           onRequestClose={() => setMoreVisible(false)}
         >

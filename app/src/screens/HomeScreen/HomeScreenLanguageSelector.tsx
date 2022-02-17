@@ -11,7 +11,7 @@ import Typography from '../../components/Typography';
 import {TranslateContext} from '../../context/TranslateContext';
 import languageTo from '../../util/languageTo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import RectButton from '../../components/RectButton';
+import BorderlessButton from '../../components/BorderlessButton';
 import {Menu, MenuItem} from 'react-native-material-menu';
 import {Language} from '../../constants/types';
 import {LANGUAGES} from '../../constants/values';
@@ -52,9 +52,12 @@ const HomeScreenLanguageSelector = () => {
           <ActivityIndicator size="small" color={COLORS.red} />
         </View>
       ) : (
-        <RectButton onPress={reverseLanguage} style={styles.reverseButton}>
+        <BorderlessButton
+          onPress={reverseLanguage}
+          style={styles.reverseButton}
+        >
           <Icon size={24} color={COLORS.red} name="compare-arrows" />
-        </RectButton>
+        </BorderlessButton>
       )}
 
       <Pressable

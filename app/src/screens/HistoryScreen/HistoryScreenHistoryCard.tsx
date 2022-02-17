@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {TranslateContext} from '../../context/TranslateContext';
 import {HistoryContext} from '../../context/HistoryContext';
 import Typography from '../../components/Typography';
-import RectButton from '../../components/RectButton';
+import BorderlessButton from '../../components/BorderlessButton';
 
 const HistoryScreenHistoryCard: React.FC<History> = props => {
   const {navigate} = useNavigation();
@@ -23,10 +23,10 @@ const HistoryScreenHistoryCard: React.FC<History> = props => {
       </Typography>
       <Typography style={styles.text}>{text}</Typography>
       <View style={styles.footer}>
-        <RectButton onPress={() => removeHistory(id)} style={styles.icon}>
+        <BorderlessButton onPress={() => removeHistory(id)} style={styles.icon}>
           <Icon color={COLORS.white} size={24} name="close" />
-        </RectButton>
-        <RectButton
+        </BorderlessButton>
+        <BorderlessButton
           onPress={() => {
             applyHistory(props);
             navigate('Home');
@@ -34,7 +34,7 @@ const HistoryScreenHistoryCard: React.FC<History> = props => {
           style={styles.icon}
         >
           <Icon color={COLORS.white} size={24} name="arrow-forward" />
-        </RectButton>
+        </BorderlessButton>
       </View>
     </View>
   );

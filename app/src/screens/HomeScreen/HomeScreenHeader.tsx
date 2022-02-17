@@ -4,15 +4,16 @@ import useNavigation from '../../hooks/useNavigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {COLORS, STATUSBAR_HEIGHT} from '../../constants/styles';
 import Typography from '../../components/Typography';
+import BorderlessButton from '../../components/BorderlessButton';
 
 const HomeScreenHeader = () => {
   const {openDrawer}: any = useNavigation();
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => openDrawer()} style={styles.menuBtn}>
+      <BorderlessButton onPress={() => openDrawer()} style={styles.menuBtn}>
         <Icon name="menu" color={COLORS.white} size={24} />
-      </Pressable>
+      </BorderlessButton>
       <Typography style={styles.title}>3가지 번역기 비교하다</Typography>
     </View>
   );

@@ -4,14 +4,16 @@ import {COLORS, SHADOW, STATUSBAR_HEIGHT} from '../../constants/styles';
 import Typography from '../../components/Typography';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import useNavigation from '../../hooks/useNavigation';
+import BorderlessButton from '../../components/BorderlessButton';
+
 const HistoryScreenHeader = () => {
   const {goBack} = useNavigation();
 
   return (
     <View style={styles.container}>
-      <Pressable style={styles.icon} onPress={goBack}>
+      <BorderlessButton style={styles.icon} onPress={goBack}>
         <Icon size={24} color={COLORS.white} name="arrow-back" />
-      </Pressable>
+      </BorderlessButton>
       <Typography style={styles.title}>번역 기록</Typography>
     </View>
   );

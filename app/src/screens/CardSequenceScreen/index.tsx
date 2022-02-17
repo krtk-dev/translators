@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useCallback, useContext} from 'react';
-import {COLORS} from '../../constants/styles';
+import {COLORS, STATUSBAR_HEIGHT} from '../../constants/styles';
 import CardSequenceScreenHeader from './CardSequenceScreenHeader';
 import DraggableFlatList, {
   DragEndParams,
@@ -38,5 +38,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.red,
+    paddingTop: STATUSBAR_HEIGHT,
   },
 });

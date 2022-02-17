@@ -23,7 +23,7 @@ const FullScreen = () => {
     >
       <View style={styles.textContainer}>
         <AutoSizeText style={styles.text} mode={ResizeTextMode.group}>
-          안녕하세요 반갑습니다
+          {content}
         </AutoSizeText>
       </View>
     </Pressable>
