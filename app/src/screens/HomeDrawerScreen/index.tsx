@@ -4,8 +4,11 @@ import {COLORS, STATUSBAR_HEIGHT} from '../../constants/styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import BaseButton from '../../components/BaseButton';
 import Typography from '../../components/Typography';
+import useNavigation from '../../hooks/useNavigation';
 
 const HomeDrawerScreen = () => {
+  const {navigate} = useNavigation();
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -13,7 +16,10 @@ const HomeDrawerScreen = () => {
           <Icon name="translate" color={COLORS.red} size={40} />
         </View>
       </View>
-      <BaseButton style={styles.tabContainer}>
+      <BaseButton
+        onPress={() => navigate('CardSequence')}
+        style={styles.tabContainer}
+      >
         <Icon
           name="edit"
           color={COLORS.red}
@@ -22,7 +28,10 @@ const HomeDrawerScreen = () => {
         />
         <Typography>카드 순서변경</Typography>
       </BaseButton>
-      <BaseButton style={styles.tabContainer}>
+      <BaseButton
+        onPress={() => navigate('History')}
+        style={styles.tabContainer}
+      >
         <Icon
           name="library-books"
           color={COLORS.red}
@@ -31,7 +40,10 @@ const HomeDrawerScreen = () => {
         />
         <Typography>번역기록</Typography>
       </BaseButton>
-      <BaseButton style={styles.tabContainer}>
+      <BaseButton
+        onPress={() => navigate('Credit')}
+        style={styles.tabContainer}
+      >
         <Icon
           name="subtitles"
           color={COLORS.red}

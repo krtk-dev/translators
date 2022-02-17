@@ -1,29 +1,25 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React, {useContext} from 'react';
-import {COLORS, SHADOW, WIDTH} from '../constants/styles';
-import {History} from '../constants/types';
-import Typography from './Typography';
-import languageTo from '../util/languageTo';
-import useNavigation from '../hooks/useNavigation';
+import {COLORS, SHADOW, WIDTH} from '../../constants/styles';
+import {History} from '../../constants/types';
+import languageTo from '../../util/languageTo';
+import useNavigation from '../../hooks/useNavigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import RectButton from './RectButton';
-import {TranslateContext} from '../context/TranslateContext';
-import {HistoryContext} from '../context/HistoryContext';
+import {TranslateContext} from '../../context/TranslateContext';
+import {HistoryContext} from '../../context/HistoryContext';
+import Typography from '../../components/Typography';
+import RectButton from '../../components/RectButton';
 
-interface HistoryCardProps {
-  title: string;
-}
-
-const HistoryCard: React.FC<History & HistoryCardProps> = props => {
+const HistoryScreenHistoryCard: React.FC<History> = props => {
   const {navigate} = useNavigation();
   const {applyHistory} = useContext(TranslateContext);
   const {removeHistory} = useContext(HistoryContext);
-  const {id, text, toLanguage, title} = props;
+  const {id, text, toLanguage} = props;
 
   return (
     <View style={styles.container}>
       <Typography style={styles.title}>
-        {title || `${languageTo.korean(toLanguage)}로`}
+        {`${languageTo.korean(toLanguage)}로`}
       </Typography>
       <Typography style={styles.text}>{text}</Typography>
       <View style={styles.footer}>
@@ -44,13 +40,14 @@ const HistoryCard: React.FC<History & HistoryCardProps> = props => {
   );
 };
 
-export default HistoryCard;
+export default HistoryScreenHistoryCard;
 
 const styles = StyleSheet.create({
   container: {
     width: '100%',
     minHeight: 160,
-    borderRadius: 4,
+    borderRadius: 16,
+    marginBottom: 16,
     ...SHADOW,
     backgroundColor: COLORS.red,
   },
@@ -63,6 +60,10 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
+    fontSize: 16,
+    color: COLORS.white,
+    margin: 16,
+    marginBottom: 8,
   },
   footer: {
     width: '100%',
@@ -72,6 +73,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   icon: {
+    marginLeft: -4,
     width: 48,
     height: 48,
     alignItems: 'center',
