@@ -5,5 +5,5 @@
 - fab
 - translate with crawling
 - rate
-- icon, bundle, splash, app name
+- icon, bundle, splash, app name 수동으로
 - Android test

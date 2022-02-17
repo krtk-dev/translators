@@ -21,9 +21,11 @@ const FullScreen = () => {
       onPress={goBack}
       style={[styles.container, {backgroundColor: color}]}
     >
-      <AutoSizeText style={styles.text} mode={ResizeTextMode.group}>
-        안녕하세요 반갑습니다
-      </AutoSizeText>
+      <View style={styles.textContainer}>
+        <AutoSizeText style={styles.text} mode={ResizeTextMode.group}>
+          안녕하세요 반갑습니다
+        </AutoSizeText>
+      </View>
     </Pressable>
   );
 };
@@ -36,10 +38,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
-    color: COLORS.white,
+  textContainer: {
     width: HEIGHT - 160,
     height: WIDTH - 80,
     transform: [{rotate: '90deg'}],
+  },
+  text: {
+    color: COLORS.white,
   },
 });

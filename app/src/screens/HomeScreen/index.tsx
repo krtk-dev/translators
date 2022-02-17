@@ -4,10 +4,7 @@ import HomeScreenHeader from './HomeScreenHeader';
 import HomeScreenLanguageSelector from './HomeScreenLanguageSelector';
 import {TranslateContext} from '../../context/TranslateContext';
 import BaseInput from '../../components/BaseInput';
-import BaseButton from '../../components/BaseButton';
-import Typography from '../../components/Typography';
 import {HistoryContext} from '../../context/HistoryContext';
-import HistoryCard from '../../components/HistoryCard';
 import HomeScreenRecentCard from './HomeScreenRecentCard';
 import {CardSequenceContext} from '../../context/CardSequenceContex';
 import HomeScreenTranslatedCard from './HomeScreenTranslatedCard';
@@ -28,6 +25,8 @@ const HomeScreen = () => {
         ref={scrollViewRef}
         style={{paddingHorizontal: 16}}
         onTouchStart={Keyboard.dismiss}
+        overScrollMode="never"
+        showsVerticalScrollIndicator={false}
       >
         <BaseInput
           placeholder="최대 1000글자까지 번역가능"

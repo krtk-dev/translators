@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="#1A73E8"
     android:layout_height="match_parent">
 
     <ImageView
@@ -9,6 +10,5 @@
         android:layout_height="wrap_content"
         android:contentDescription="Splashscreen"
         android:scaleType="centerCrop"
-        android:background="@color/splashprimary"
-        android:src="@drawable/splashscreen"/>
+        android:src="@drawable/splash"/>
 </RelativeLayout>

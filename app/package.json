@@ -23,9 +23,7 @@
     "ios:clean:force": "rm -rf ~/Library/Developer/Xcode/DerivedData/*",
     "test": "NODE_ENV=test jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "oss": "npx license-checker --json --out ./src/assets/oss.json",
-    "make:splash": "react-native set-splash --path ./assets/splash.png --resize cover --background \"#1A73E8\"",
-    "make:icon": "react-native set-icon --path ./assets/icon.png"
+    "oss": "npx license-checker --json --out ./src/assets/oss.json"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.16.1",
@@ -53,7 +51,6 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
-    "@bam.tech/react-native-make": "^3.0.3",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.66.15",
