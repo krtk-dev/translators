@@ -27,7 +27,8 @@ const HomeScreen = () => {
       <ScrollView
         ref={scrollViewRef}
         style={{paddingHorizontal: 16}}
-        onTouchStart={Keyboard.dismiss}>
+        onTouchStart={Keyboard.dismiss}
+      >
         <BaseInput
           placeholder="최대 1000글자까지 번역가능"
           multiline

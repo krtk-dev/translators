@@ -17,7 +17,8 @@ const HomeDrawerNavigation = () => {
         drawerPosition: 'left',
         drawerType: 'front',
         headerShown: false,
-      }}>
+      }}
+    >
       <Drawer.Screen name="Home" component={HomeScreen} />
     </Drawer.Navigator>
   );

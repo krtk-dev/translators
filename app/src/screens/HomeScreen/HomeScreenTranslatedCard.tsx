@@ -39,7 +39,8 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
         </RectButton>
         <RectButton
           onPress={() => Clipboard.setString(text)}
-          style={styles.icon}>
+          style={styles.icon}
+        >
           <Icon color={COLORS.white} size={20} name="content-copy" />
         </RectButton>
         <Menu
@@ -47,32 +48,37 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
           anchor={
             <RectButton
               onPress={() => setMoreVisible(true)}
-              style={styles.icon}>
+              style={styles.icon}
+            >
               <Icon color={COLORS.white} size={24} name="more-vert" />
             </RectButton>
           }
-          onRequestClose={() => setMoreVisible(false)}>
+          onRequestClose={() => setMoreVisible(false)}
+        >
           <MenuItem
             onPress={() => {
               setMoreVisible(false);
               setTimeout(() => {
                 Share.share({message: text});
               }, 1000);
-            }}>
+            }}
+          >
             공유
           </MenuItem>
           <MenuItem
             onPress={() => {
               setMoreVisible(false);
               navigate('Full', {color: COLORS[translator], content: text});
-            }}>
+            }}
+          >
             전체화면
           </MenuItem>
           <MenuItem
             onPress={() => {
               setMoreVisible(false);
               reverseTranslate(text);
-            }}>
+            }}
+          >
             역번역
           </MenuItem>
         </Menu>

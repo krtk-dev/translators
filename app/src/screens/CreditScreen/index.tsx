@@ -33,7 +33,8 @@ const CreditScreen = () => {
           flexDirection: 'row',
           alignItems: 'center',
           marginTop: 20,
-        }}>
+        }}
+      >
         <View style={{width: 50, alignItems: 'center'}}>
           <Icon name="email" size={20} color="white" />
         </View>
@@ -49,7 +50,8 @@ const CreditScreen = () => {
           height: 50,
           flexDirection: 'row',
           alignItems: 'center',
-        }}>
+        }}
+      >
         <View style={{width: 50, alignItems: 'center'}}>
           <Icon name="account-circle" size={20} color="white" />
         </View>
@@ -65,7 +67,8 @@ const CreditScreen = () => {
           height: 50,
           flexDirection: 'row',
           alignItems: 'center',
-        }}>
+        }}
+      >
         <View style={{width: 50, alignItems: 'center'}}>
           <Icon name="cloud" size={18} color="white" />
         </View>
@@ -82,7 +85,8 @@ const CreditScreen = () => {
           height: 50,
           flexDirection: 'row',
           alignItems: 'center',
-        }}>
+        }}
+      >
         <View style={{width: 50, alignItems: 'center'}}>
           <Icon name="star" size={20} color="white" />
         </View>
@@ -98,7 +102,8 @@ const CreditScreen = () => {
           height: 50,
           flexDirection: 'row',
           alignItems: 'center',
-        }}>
+        }}
+      >
         <View style={{width: 50, alignItems: 'center'}}>
           <Icon name="info" size={20} color="white" />
         </View>
@@ -112,7 +117,8 @@ const CreditScreen = () => {
           height: 50,
           flexDirection: 'row',
           alignItems: 'center',
-        }}>
+        }}
+      >
         <View style={{width: 50, alignItems: 'center'}}>
           <Icon name="keyboard-backspace" size={20} color="white" />
         </View>

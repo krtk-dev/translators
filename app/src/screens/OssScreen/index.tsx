@@ -109,7 +109,8 @@ const OssScreen = () => {
             height: 50,
             flexDirection: 'row',
             alignItems: 'center',
-          }}>
+          }}
+        >
           <View style={{width: 50, alignItems: 'center'}}>
             <Icon name="keyboard-backspace" size={20} color="white" />
           </View>
@@ -120,7 +121,8 @@ const OssScreen = () => {
             key={index}
             onPress={() => Linking.openURL(data.link)}
             rippleColor="#bbb"
-            style={{width: '100%', paddingHorizontal: 20, paddingVertical: 10}}>
+            style={{width: '100%', paddingHorizontal: 20, paddingVertical: 10}}
+          >
             {/* <View style={{ width: 50, alignItems: 'center' }}>
                         <Icon name="cloud" size={20} color='white' />
                     </View> */}
