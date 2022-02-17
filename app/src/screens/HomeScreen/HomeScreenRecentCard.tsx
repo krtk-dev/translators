@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     minHeight: 160,
-    borderRadius: 4,
+    borderRadius: 16,
     ...SHADOW,
     backgroundColor: COLORS.red,
   },

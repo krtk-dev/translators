@@ -7,6 +7,6 @@ export interface History {
   text: string;
 }
 
-export type Translators = 'google' | 'naver' | 'kakao';
+export type Translator = 'google' | 'naver' | 'kakao';
 export type TranslateError = 'TranslateError';
 export type Language = typeof LANGUAGES[number];

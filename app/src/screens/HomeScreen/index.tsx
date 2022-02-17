@@ -9,11 +9,14 @@ import Typography from '../../components/Typography';
 import {HistoryContext} from '../../context/HistoryContext';
 import HistoryCard from '../../components/HistoryCard';
 import HomeScreenRecentCard from './HomeScreenRecentCard';
+import {CardSequenceContext} from '../../context/CardSequenceContex';
+import HomeScreenTranslatedCard from './HomeScreenTranslatedCard';
 
 const HomeScreen = () => {
   const {text, onChangeText, translate, scrollViewRef} =
     useContext(TranslateContext);
   const {historys} = useContext(HistoryContext);
+  const {cardSequence} = useContext(CardSequenceContext);
 
   return (
     <View style={styles.container}>
@@ -30,6 +33,9 @@ const HomeScreen = () => {
           onChangeText={onChangeText}
           style={styles.input}
         />
+        {cardSequence.map(translator => (
+          <HomeScreenTranslatedCard key={translator} translator={translator} />
+        ))}
         {!!historys.length && <HomeScreenRecentCard {...historys[0]} />}
         <BaseButton onPress={translate}>
           <Typography>번역</Typography>

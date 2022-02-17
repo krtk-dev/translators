@@ -6,12 +6,12 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import {Translators} from '../constants/types';
+import {Translator} from '../constants/types';
 import {STOREAGE_CARD_SEQUENCE_ID} from '../constants/values';
 
 export type CardSequenceContextType = {
-  cardSequence: Translators[];
-  updateCardSequence: (data: Translators[]) => void;
+  cardSequence: Translator[];
+  updateCardSequence: (data: Translator[]) => void;
 };
 
 export const CardSequenceContext = createContext<CardSequenceContextType>(
@@ -19,7 +19,7 @@ export const CardSequenceContext = createContext<CardSequenceContextType>(
 );
 
 const CardSequenceProvider: React.FC = ({children}) => {
-  const [cardSequence, setCardSequence] = useState<Translators[]>([
+  const [cardSequence, setCardSequence] = useState<Translator[]>([
     'google',
     'naver',
     'kakao',
@@ -35,7 +35,7 @@ const CardSequenceProvider: React.FC = ({children}) => {
   }, []);
 
   // 순셔 변경
-  const updateCardSequence = useCallback(async (data: Translators[]) => {
+  const updateCardSequence = useCallback(async (data: Translator[]) => {
     setCardSequence(data);
     await AsyncStorage.setItem(STOREAGE_CARD_SEQUENCE_ID, JSON.stringify(data)); // storage동기화
   }, []);
