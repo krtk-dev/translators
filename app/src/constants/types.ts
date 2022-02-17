@@ -2,9 +2,9 @@ import {LANGUAGES} from './values';
 
 export interface History {
   id: string;
-  from: string;
-  to: string;
-  content: string;
+  fromLanguage: Language;
+  toLanguage: Language;
+  text: string;
 }
 
 export type Translators = 'google' | 'naver' | 'kakao';

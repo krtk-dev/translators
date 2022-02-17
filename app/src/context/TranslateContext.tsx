@@ -1,8 +1,18 @@
-import React, {createContext, useCallback, useMemo, useState} from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import {ScrollView} from 'react-native';
 import InAppReview from 'react-native-in-app-review';
-import {Language, TranslateError} from '../constants/types';
+import {History, Language, TranslateError} from '../constants/types';
+import {HistoryContext} from './HistoryContext';
 
 export type TranslateContextType = {
+  scrollViewRef: React.RefObject<ScrollView>;
   text: string;
   onChangeText: (text: string) => void;
   fromLanguage: Language;
@@ -18,11 +28,15 @@ export type TranslateContextType = {
   updateFromLanguage: (language: Language) => void;
   updateToLanguage: (language: Language) => void;
   reverseTranslate: (text: string) => void;
+  applyHistory: (history: History) => void;
 };
 
 export const TranslateContext = createContext<TranslateContextType>({} as any);
 
 const TranslateProvider: React.FC = ({children}) => {
+  const {addHistory} = useContext(HistoryContext);
+
+  const scrollViewRef = useRef<ScrollView>(null); // 홈화면 스크롤뷰
   const [text, setText] = useState('');
   const [translatedText, setTranslatedText] = useState({
     google: null,
@@ -40,12 +54,16 @@ const TranslateProvider: React.FC = ({children}) => {
   }, []);
 
   const translate = useCallback(async () => {
-    if (loading) return;
+    if (loading) return; // 로딩중이면 실행안함
+    if (!text) return; // 빈글은 번역안함
     setLoading(true);
+    // 검색기록에 추가
+    addHistory({text, fromLanguage, toLanguage});
 
     setTranslatedText({google: null, kakao: null, naver: null});
+    // 번역후 리뷰 요청
     setLoading(false);
-  }, [loading]);
+  }, [addHistory, fromLanguage, loading, text, toLanguage]);
 
   const reverseLanguage = useCallback(() => {
     // 원문과 번역할 언어를 서로 바꿈
@@ -79,8 +97,17 @@ const TranslateProvider: React.FC = ({children}) => {
     [toLanguage, fromLanguage],
   );
 
+  const applyHistory = useCallback((history: History) => {
+    // 이전에 검색했던 기록을 다시 검색
+    setToLanguage(history.toLanguage);
+    setFromLanguage(history.fromLanguage);
+    setText(history.text);
+    scrollViewRef.current?.scrollTo({y: 0, animated: true});
+  }, []);
+
   const contextValue = useMemo<TranslateContextType>(
     () => ({
+      scrollViewRef,
       text,
       onChangeText: t => setText(t),
       clear,
@@ -92,8 +119,10 @@ const TranslateProvider: React.FC = ({children}) => {
       reverseTranslate,
       updateFromLanguage,
       updateToLanguage,
+      applyHistory,
     }),
     [
+      scrollViewRef,
       clear,
       fromLanguage,
       reverseLanguage,
@@ -104,6 +133,7 @@ const TranslateProvider: React.FC = ({children}) => {
       translatedText,
       updateFromLanguage,
       updateToLanguage,
+      applyHistory,
     ],
   );
 

@@ -1,88 +1,79 @@
-import React, {Component, useState, useRef} from 'react';
-import {View, Dimensions, Text} from 'react-native';
-import {BorderlessButton} from 'react-native-gesture-handler';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
+import React, {useContext} from 'react';
+import {COLORS, SHADOW, WIDTH} from '../constants/styles';
+import {History} from '../constants/types';
+import Typography from './Typography';
+import languageTo from '../util/languageTo';
+import useNavigation from '../hooks/useNavigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Menu, {MenuItem} from 'react-native-material-menu';
+import RectButton from './RectButton';
+import {TranslateContext} from '../context/TranslateContext';
+import {HistoryContext} from '../context/HistoryContext';
 
-const WIDTH = Dimensions.get('window').width;
+interface HistoryCardProps {
+  title: string;
+}
 
-const TranslatedCard = () => {
-  const {text, color, title, remove, register, removeOff} = props;
+const HistoryCard: React.FC<History & HistoryCardProps> = props => {
+  const {navigate} = useNavigation();
+  const {applyHistory} = useContext(TranslateContext);
+  const {removeHistory} = useContext(HistoryContext);
+  const {id, text, toLanguage, title} = props;
 
   return (
-    <View
-      style={{
-        width: WIDTH - 20,
-        margin: 10,
-        backgroundColor: color,
-        minHeight: 120,
-        borderRadius: 4,
-        ...shadow,
-      }}
-      animation="fadeInUp"
-      duration={200}
-      easing="ease-out">
-      <View
-        style={{
-          width: '100%',
-          height: 50,
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
-        <Text style={{color: 'white', fontSize: 24, marginLeft: 20}}>
-          {title}
-        </Text>
-      </View>
-      <View style={{width: '100%', minHeight: 50, paddingHorizontal: 20}}>
-        <Text selectable style={{lineHeight: 30, fontSize: 20, color: 'white'}}>
-          {text}
-        </Text>
-      </View>
-
-      <View
-        style={{
-          width: '100%',
-          height: 50,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-        }}>
-        {removeOff === undefined && (
-          <BorderlessButton onPress={remove}>
-            <Icon name="clear" size={20} color="white" style={{margin: 7}} />
-          </BorderlessButton>
-        )}
-        <View
-          style={{
-            width: 50,
-            height: 50,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <BorderlessButton onPress={register}>
-            <Icon
-              name="arrow-forward"
-              size={24}
-              color="white"
-              style={{margin: 5}}
-            />
-          </BorderlessButton>
-        </View>
+    <View style={styles.container}>
+      <Typography style={styles.title}>
+        {title || `${languageTo.korean(toLanguage)}로`}
+      </Typography>
+      <Typography style={styles.text}>{text}</Typography>
+      <View style={styles.footer}>
+        <RectButton onPress={() => removeHistory(id)} style={styles.icon}>
+          <Icon color={COLORS.white} size={24} name="close" />
+        </RectButton>
+        <RectButton
+          onPress={() => {
+            applyHistory(props);
+            navigate('Home');
+          }}
+          style={styles.icon}>
+          <Icon color={COLORS.white} size={24} name="arrow-forward" />
+        </RectButton>
       </View>
     </View>
   );
 };
 
-const shadow = {
-  shadowColor: '#000',
-  shadowOffset: {
-    width: 0,
-    height: 2,
+export default HistoryCard;
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    minHeight: 160,
+    borderRadius: 4,
+    ...SHADOW,
+    backgroundColor: COLORS.red,
   },
-  shadowOpacity: 0.23,
-  shadowRadius: 2.62,
-
-  elevation: 4,
-};
-
-export default TranslatedCard;
+  title: {
+    marginLeft: 16,
+    marginTop: 16,
+    color: COLORS.white,
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  text: {
+    flex: 1,
+  },
+  footer: {
+    width: '100%',
+    height: 48,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  icon: {
+    width: 48,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
