@@ -7,18 +7,41 @@ const useKeyboard = () => {
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    const showSub = Keyboard.addListener('keyboardWillShow', e => {
-      setKeyboardShown(true);
-      setKeyboardHeight(e.endCoordinates.height);
-      setDuration(e.duration);
-    });
-    const hideSub = Keyboard.addListener('keyboardWillHide', e => {
-      setKeyboardShown(false);
-    });
+    const keyboardWillShowSubscription = Keyboard.addListener(
+      'keyboardWillShow',
+      e => {
+        setKeyboardShown(true);
+        setKeyboardHeight(e.endCoordinates.height);
+        setDuration(e.duration);
+      },
+    );
+    const keyboardDidShowSubscription = Keyboard.addListener(
+      'keyboardDidShow',
+      e => {
+        setKeyboardShown(true);
+        setKeyboardHeight(e.endCoordinates.height);
+        setDuration(e.duration);
+      },
+    );
+    const keyboardWillHideSubscription = Keyboard.addListener(
+      'keyboardWillHide',
+      () => {
+        setKeyboardShown(false);
+      },
+    );
+
+    const keyboardDidHideSubscription = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardShown(false);
+      },
+    );
 
     return () => {
-      showSub.remove();
-      hideSub.remove();
+      keyboardWillShowSubscription.remove();
+      keyboardWillHideSubscription.remove();
+      keyboardDidShowSubscription.remove();
+      keyboardDidHideSubscription.remove();
     };
   }, []);
 
