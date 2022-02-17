@@ -9,10 +9,10 @@ import HomeScreenRecentCard from './HomeScreenRecentCard';
 import {CardSequenceContext} from '../../context/CardSequenceContex';
 import HomeScreenTranslatedCard from './HomeScreenTranslatedCard';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import HomeScreenTranslateFab from './HomeScreenTranslateFab';
 
 const HomeScreen = () => {
-  const {text, onChangeText, translate, scrollViewRef} =
-    useContext(TranslateContext);
+  const {text, onChangeText, scrollViewRef} = useContext(TranslateContext);
   const {historys} = useContext(HistoryContext);
   const {cardSequence} = useContext(CardSequenceContext);
   const {bottom} = useSafeAreaInsets();
@@ -39,8 +39,9 @@ const HomeScreen = () => {
           <HomeScreenTranslatedCard key={translator} translator={translator} />
         ))}
         {!!historys.length && <HomeScreenRecentCard {...historys[0]} />}
-        <View style={{height: bottom + 56 + 32}} />
+        <View style={{height: bottom + 56 + 48}} />
       </ScrollView>
+      <HomeScreenTranslateFab />
     </View>
   );
 };

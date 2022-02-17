@@ -3,7 +3,8 @@
 
 
 - fab
-- translate with crawling
 - rate
+- translate with crawling
 - Android test, rect & base btn
 - ios developer account
+- clear btn

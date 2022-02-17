@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {ScrollView} from 'react-native';
+import {Keyboard, ScrollView} from 'react-native';
 import InAppReview from 'react-native-in-app-review';
 import Tts from 'react-native-tts';
 import {History, Language, TranslateError} from '../constants/types';
@@ -18,6 +18,7 @@ export type TranslateContextType = {
   scrollViewRef: React.RefObject<ScrollView>;
   text: string;
   onChangeText: (text: string) => void;
+  loading: boolean;
   fromLanguage: Language;
   toLanguage: Language;
   translatedText: {
@@ -60,10 +61,13 @@ const TranslateProvider: React.FC = ({children}) => {
     if (loading) return; // 로딩중이면 실행안함
     if (!text) return; // 빈글은 번역안함
     setLoading(true);
+    Keyboard.dismiss();
     // 검색기록에 추가
     addHistory({text, fromLanguage, toLanguage});
-
+    // 초기화
     setTranslatedText({google: null, kakao: null, naver: null});
+    // 딜레이
+    await new Promise(res => setTimeout(res, 1000));
     // 번역후 리뷰 요청
     setLoading(false);
   }, [addHistory, fromLanguage, loading, text, toLanguage]);
@@ -118,6 +122,7 @@ const TranslateProvider: React.FC = ({children}) => {
       scrollViewRef,
       text,
       onChangeText: t => setText(t),
+      loading,
       clear,
       fromLanguage,
       toLanguage,
@@ -133,6 +138,7 @@ const TranslateProvider: React.FC = ({children}) => {
       scrollViewRef,
       clear,
       fromLanguage,
+      loading,
       reverseLanguage,
       reverseTranslate,
       text,

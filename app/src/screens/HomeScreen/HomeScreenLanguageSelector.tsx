@@ -1,4 +1,10 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React, {useContext, useState} from 'react';
 import {COLORS, SHADOW} from '../../constants/styles';
 import Typography from '../../components/Typography';
@@ -17,6 +23,7 @@ const HomeScreenLanguageSelector = () => {
     reverseLanguage,
     updateToLanguage,
     updateFromLanguage,
+    loading,
   } = useContext(TranslateContext);
 
   const [fromMenuVisible, setFromMenuVisible] = useState(false);
@@ -40,9 +47,15 @@ const HomeScreenLanguageSelector = () => {
         </LanguageSelectMenu>
       </Pressable>
 
-      <RectButton onPress={reverseLanguage} style={styles.reverseButton}>
-        <Icon size={24} color={COLORS.red} name="compare-arrows" />
-      </RectButton>
+      {loading ? (
+        <View style={styles.reverseButton}>
+          <ActivityIndicator size="small" color={COLORS.red} />
+        </View>
+      ) : (
+        <RectButton onPress={reverseLanguage} style={styles.reverseButton}>
+          <Icon size={24} color={COLORS.red} name="compare-arrows" />
+        </RectButton>
+      )}
 
       <Pressable
         onPress={() => setToMenuVisible(true)}

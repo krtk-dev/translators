@@ -11,6 +11,7 @@ import TranslateProvider from './src/context/TranslateContext';
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
   'Sending `tts',
+  '`new NativeEventEmitter()` was called',
 ]);
 
 const App = () => {

@@ -14,6 +14,7 @@ module.exports = {
         'react-native/no-inline-styles': 'off',
         curly: 'off',
         'comma-dangle': 'off',
+        'react-hooks/exhaustive-deps': 'off',
       },
     },
   ],
