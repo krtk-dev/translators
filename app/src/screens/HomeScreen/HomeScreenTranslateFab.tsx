@@ -4,7 +4,7 @@ import {TranslateContext} from '../../context/TranslateContext';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {COLORS, SHADOW} from '../../constants/styles';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useKeyboard} from '@react-native-community/hooks';
+import useKeyboard from '../../hooks/useKeyboard';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -13,7 +13,7 @@ const HomeScreenTranslateFab = () => {
   const {translate, loading} = useContext(TranslateContext);
   const [scale] = useState(new Animated.Value(0));
   const [translateY] = useState(new Animated.Value(0));
-  const {keyboardHeight, keyboardShown} = useKeyboard();
+  const {keyboardHeight, keyboardShown, duration} = useKeyboard();
 
   useEffect(() => {
     // 번역시 Scale 애니메이션 작동
@@ -27,11 +27,13 @@ const HomeScreenTranslateFab = () => {
 
   useEffect(() => {
     // 키보드 작동시 TranslateY 애니메이션 작동
-    Animated.spring(translateY, {
+    Animated.timing(translateY, {
       toValue: keyboardShown ? -keyboardHeight + bottom : 0,
       useNativeDriver: true,
+      duration,
+      easing: Easing.out(Easing.ease),
     }).start();
-  }, [keyboardShown, keyboardHeight]);
+  }, [keyboardShown, keyboardHeight, duration]);
 
   return (
     <AnimatedPressable

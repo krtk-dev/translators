@@ -1,18 +1,18 @@
-import {Keyboard, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Keyboard, ScrollView, StyleSheet, View} from 'react-native';
 import React, {useContext} from 'react';
 import HomeScreenHeader from './HomeScreenHeader';
 import HomeScreenLanguageSelector from './HomeScreenLanguageSelector';
 import {TranslateContext} from '../../context/TranslateContext';
-import BaseInput from '../../components/BaseInput';
 import {HistoryContext} from '../../context/HistoryContext';
 import HomeScreenRecentCard from './HomeScreenRecentCard';
 import {CardSequenceContext} from '../../context/CardSequenceContex';
 import HomeScreenTranslatedCard from './HomeScreenTranslatedCard';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import HomeScreenTranslateFab from './HomeScreenTranslateFab';
+import HomeScreenInput from './HomeScreenInput';
 
 const HomeScreen = () => {
-  const {text, onChangeText, scrollViewRef} = useContext(TranslateContext);
+  const {scrollViewRef} = useContext(TranslateContext);
   const {historys} = useContext(HistoryContext);
   const {cardSequence} = useContext(CardSequenceContext);
   const {bottom} = useSafeAreaInsets();
@@ -24,17 +24,10 @@ const HomeScreen = () => {
       <ScrollView
         ref={scrollViewRef}
         style={{paddingHorizontal: 16}}
-        onTouchStart={Keyboard.dismiss}
         overScrollMode="never"
         showsVerticalScrollIndicator={false}
       >
-        <BaseInput
-          placeholder="최대 1000글자까지 번역가능"
-          multiline
-          value={text}
-          onChangeText={onChangeText}
-          style={styles.input}
-        />
+        <HomeScreenInput />
         {cardSequence.map(translator => (
           <HomeScreenTranslatedCard key={translator} translator={translator} />
         ))}
@@ -51,9 +44,5 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  input: {
-    width: '100%',
-    marginVertical: 56,
   },
 });
