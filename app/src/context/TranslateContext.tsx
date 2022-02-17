@@ -47,6 +47,7 @@ const TranslateProvider: React.FC = ({children}) => {
     kakao: null,
     naver: null,
   });
+  const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [fromLanguage, setFromLanguage] = useState<Language>('kr');
   const [toLanguage, setToLanguage] = useState<Language>('en');
@@ -58,19 +59,21 @@ const TranslateProvider: React.FC = ({children}) => {
   }, []);
 
   const translate = useCallback(async () => {
+    //------------- 실행 조건에 부합하는지 확인 -------------//
     if (loading) return; // 로딩중이면 실행안함
     if (!text) return; // 빈글은 번역안함
-    setLoading(true);
-    Keyboard.dismiss();
-    // 검색기록에 추가
-    addHistory({text, fromLanguage, toLanguage});
-    // 초기화
-    setTranslatedText({google: null, kakao: null, naver: null});
-    // 딜레이
-    await new Promise(res => setTimeout(res, 1000));
-    // 번역후 리뷰 요청
-    setLoading(false);
-  }, [addHistory, fromLanguage, loading, text, toLanguage]);
+    //------------- 실행 전 -------------//
+    setLoading(true); // 로딩 시작
+    Keyboard.dismiss(); // 키보드 닫기
+    addHistory({text, fromLanguage, toLanguage}); // 검색기록에 추가
+    setTranslatedText({google: null, kakao: null, naver: null}); // 초기화
+    setCount(prev => prev + 1); // 리뷰용 카운트
+    //------------- 실행 중 -------------//
+    await new Promise(res => setTimeout(res, 1000)); // 딜레이
+    //------------- 실행 후 -------------//
+    setLoading(false); // 로딩 끝
+    if (count !== 0 && count % 10 === 0) InAppReview.RequestInAppReview();
+  }, [addHistory, fromLanguage, loading, text, toLanguage, count]);
 
   const reverseLanguage = useCallback(() => {
     // 원문과 번역할 언어를 서로 바꿈

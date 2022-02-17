@@ -14,7 +14,7 @@ const HomeScreenTranslateFab = () => {
   const [scale] = useState(new Animated.Value(0));
   const [translateY] = useState(new Animated.Value(0));
   const {keyboardHeight, keyboardShown} = useKeyboard();
-  console.log(keyboardHeight);
+
   useEffect(() => {
     // 번역시 Scale 애니메이션 작동
     Animated.timing(scale, {
