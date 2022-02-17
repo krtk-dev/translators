@@ -97,7 +97,7 @@ export default HomeScreenLanguageSelector;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 56,
+    height: 48,
     flexDirection: 'row',
     ...SHADOW,
     backgroundColor: COLORS.white,
@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   reverseButton: {
-    width: 56,
-    height: 56,
+    width: 48,
+    height: 48,
     alignItems: 'center',
     justifyContent: 'center',
   },

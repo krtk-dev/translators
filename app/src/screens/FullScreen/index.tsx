@@ -1,6 +1,9 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import useRoute from '../../hooks/useRoute';
+import {AutoSizeText, ResizeTextMode} from 'react-native-auto-size-text';
+import {COLORS, HEIGHT, WIDTH} from '../../constants/styles';
+import useNavigation from '../../hooks/useNavigation';
 
 export interface FullScreenProps {
   color: string;
@@ -11,14 +14,32 @@ const FullScreen = () => {
   const {
     params: {color, content},
   } = useRoute<'Full'>();
+  const {goBack} = useNavigation();
 
   return (
-    <View>
-      <Text>FullScreen</Text>
-    </View>
+    <Pressable
+      onPress={goBack}
+      style={[styles.container, {backgroundColor: color}]}
+    >
+      <AutoSizeText style={styles.text} mode={ResizeTextMode.group}>
+        안녕하세요 반갑습니다
+      </AutoSizeText>
+    </Pressable>
   );
 };
 
 export default FullScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text: {
+    color: COLORS.white,
+    width: HEIGHT - 160,
+    height: WIDTH - 80,
+    transform: [{rotate: '90deg'}],
+  },
+});
