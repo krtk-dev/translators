@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useContext} from 'react';
+import {Share, StyleSheet, Text, View} from 'react-native';
+import React, {useCallback, useContext, useState} from 'react';
 import {Translator} from '../../constants/types';
 import {TranslateContext} from '../../context/TranslateContext';
 import {COLORS, SHADOW} from '../../constants/styles';
@@ -7,6 +7,9 @@ import Typography from '../../components/Typography';
 import RectButton from '../../components/RectButton';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Clipboard from '@react-native-community/clipboard';
+import {Menu, MenuItem} from 'react-native-material-menu';
+import useNavigation from '../../hooks/useNavigation';
+import Tts from 'react-native-tts';
 
 interface HomeScreenTranslatedCardProps {
   translator: Translator;
@@ -15,27 +18,64 @@ interface HomeScreenTranslatedCardProps {
 const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
   translator,
 }) => {
-  const {translatedText, toLanguage, reverseTranslate} =
-    useContext(TranslateContext);
+  const {navigate} = useNavigation();
+  const {translatedText, reverseTranslate} = useContext(TranslateContext);
+  const [moreVisible, setMoreVisible] = useState(false);
 
-  const text = translatedText[translator] || '123';
+  const text = translatedText[translator] || '';
+
+  const onTTS = useCallback(async () => {
+    await Tts.stop();
+    Tts.speak(text);
+  }, [text]);
 
   return (
     <View style={[styles.container, {backgroundColor: COLORS[translator]}]}>
       <Typography style={styles.title}>{translator.toUpperCase()}</Typography>
       <Typography style={styles.text}>{text}</Typography>
       <View style={styles.footer}>
-        <RectButton style={styles.icon}>
-          <Icon color={COLORS.white} size={24} name="volume-up" />
+        <RectButton onPress={onTTS} style={styles.icon}>
+          <Icon color={COLORS.white} size={22} name="volume-up" />
         </RectButton>
         <RectButton
           onPress={() => Clipboard.setString(text)}
           style={styles.icon}>
           <Icon color={COLORS.white} size={20} name="content-copy" />
         </RectButton>
-        <RectButton style={styles.icon}>
-          <Icon color={COLORS.white} size={24} name="more-vert" />
-        </RectButton>
+        <Menu
+          visible={moreVisible}
+          anchor={
+            <RectButton
+              onPress={() => setMoreVisible(true)}
+              style={styles.icon}>
+              <Icon color={COLORS.white} size={24} name="more-vert" />
+            </RectButton>
+          }
+          onRequestClose={() => setMoreVisible(false)}>
+          <MenuItem
+            onPress={() => {
+              setMoreVisible(false);
+              setTimeout(() => {
+                Share.share({message: text});
+              }, 1000);
+            }}>
+            공유
+          </MenuItem>
+          <MenuItem
+            onPress={() => {
+              setMoreVisible(false);
+              navigate('Full', {color: COLORS[translator], content: text});
+            }}>
+            전체화면
+          </MenuItem>
+          <MenuItem
+            onPress={() => {
+              setMoreVisible(false);
+              reverseTranslate(text);
+            }}>
+            역번역
+          </MenuItem>
+        </Menu>
       </View>
     </View>
   );

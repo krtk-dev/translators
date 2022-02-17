@@ -2,13 +2,16 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react';
 import {ScrollView} from 'react-native';
 import InAppReview from 'react-native-in-app-review';
+import Tts from 'react-native-tts';
 import {History, Language, TranslateError} from '../constants/types';
+import languageTo from '../util/languageTo';
 import {HistoryContext} from './HistoryContext';
 
 export type TranslateContextType = {
@@ -74,9 +77,10 @@ const TranslateProvider: React.FC = ({children}) => {
   const reverseTranslate = useCallback(
     (_text: string) => {
       setText(_text); // text를 적용하고
+      reverseLanguage(); // 언어도 바꿈
       setImmediate(translate); // translate시킴
     },
-    [translate],
+    [translate, reverseLanguage],
   );
 
   const updateFromLanguage = useCallback(
@@ -104,6 +108,10 @@ const TranslateProvider: React.FC = ({children}) => {
     setText(history.text);
     scrollViewRef.current?.scrollTo({y: 0, animated: true});
   }, []);
+
+  useEffect(() => {
+    Tts.setDefaultLanguage(languageTo.ttsLanguage(toLanguage));
+  }, [toLanguage]);
 
   const contextValue = useMemo<TranslateContextType>(
     () => ({
