@@ -19,10 +19,15 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
   translator,
 }) => {
   const {navigate} = useNavigation();
-  const {translatedText, reverseTranslate} = useContext(TranslateContext);
+  const {translatedData, reverseTranslate} = useContext(TranslateContext);
   const [moreVisible, setMoreVisible] = useState(false);
 
-  const text = translatedText[translator] || '';
+  const text =
+    typeof translatedData[translator] === 'string'
+      ? (translatedData[translator] as string)
+      : translatedData[translator] === null
+      ? ''
+      : '시간초과';
 
   const onTTS = useCallback(async () => {
     await Tts.stop();

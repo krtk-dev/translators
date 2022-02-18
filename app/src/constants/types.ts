@@ -8,5 +8,4 @@ export interface History {
 }
 
 export type Translator = 'google' | 'naver' | 'kakao';
-export type TranslateError = 'TranslateError';
 export type Language = typeof LANGUAGES[number];

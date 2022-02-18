@@ -10,9 +10,16 @@ import React, {
 import {Keyboard, ScrollView} from 'react-native';
 import InAppReview from 'react-native-in-app-review';
 import Tts from 'react-native-tts';
-import {History, Language, TranslateError} from '../constants/types';
+import TranslatorCrawler from '../components/TranslatorCrawler';
+import {History, Language} from '../constants/types';
 import languageTo from '../util/languageTo';
 import {HistoryContext} from './HistoryContext';
+
+export interface TranslatedData {
+  google: string | null | Error;
+  kakao: string | null | Error;
+  naver: string | null | Error;
+}
 
 export type TranslateContextType = {
   scrollViewRef: React.RefObject<ScrollView>;
@@ -21,11 +28,7 @@ export type TranslateContextType = {
   loading: boolean;
   fromLanguage: Language;
   toLanguage: Language;
-  translatedText: {
-    google: string | null | TranslateError;
-    kakao: string | null | TranslateError;
-    naver: string | null | TranslateError;
-  };
+  translatedData: TranslatedData;
   clear: () => void;
   translate: () => void;
   reverseLanguage: () => void;
@@ -42,7 +45,7 @@ const TranslateProvider: React.FC = ({children}) => {
 
   const scrollViewRef = useRef<ScrollView>(null); // 홈화면 스크롤뷰
   const [text, setText] = useState('');
-  const [translatedText, setTranslatedText] = useState({
+  const [translatedData, setTranslatedData] = useState<TranslatedData>({
     google: null,
     kakao: null,
     naver: null,
@@ -55,7 +58,7 @@ const TranslateProvider: React.FC = ({children}) => {
   const clear = useCallback(() => {
     // 초기화
     setText('');
-    setTranslatedText({google: null, kakao: null, naver: null});
+    setTranslatedData({google: null, kakao: null, naver: null});
   }, []);
 
   const translate = useCallback(async () => {
@@ -63,17 +66,23 @@ const TranslateProvider: React.FC = ({children}) => {
     if (loading) return; // 로딩중이면 실행안함
     if (!text) return; // 빈글은 번역안함
     //------------- 실행 전 -------------//
-    setLoading(true); // 로딩 시작
     Keyboard.dismiss(); // 키보드 닫기
     addHistory({text, fromLanguage, toLanguage}); // 검색기록에 추가
-    setTranslatedText({google: null, kakao: null, naver: null}); // 초기화
+    setTranslatedData({google: null, kakao: null, naver: null}); // 초기화
     setCount(prev => prev + 1); // 리뷰용 카운트
-    //------------- 실행 중 -------------//
-    await new Promise(res => setTimeout(res, 1000)); // 딜레이
-    //------------- 실행 후 -------------//
-    setLoading(false); // 로딩 끝
-    if (count !== 0 && count % 10 === 0) InAppReview.RequestInAppReview();
+    //------------- 실행 요청 -------------//
+    setLoading(true); // 로딩 시작
   }, [addHistory, fromLanguage, loading, text, toLanguage, count]);
+
+  const onTranslated = useCallback(
+    (data: TranslatedData) => {
+      //------------- 실행 후 -------------//
+      setLoading(false); // 로딩 끝
+      setTranslatedData(data);
+      if (count !== 0 && count % 10 === 0) InAppReview.RequestInAppReview();
+    },
+    [count],
+  );
 
   const reverseLanguage = useCallback(() => {
     // 원문과 번역할 언어를 서로 바꿈
@@ -85,7 +94,7 @@ const TranslateProvider: React.FC = ({children}) => {
     (_text: string) => {
       setText(_text); // text를 적용하고
       reverseLanguage(); // 언어도 바꿈
-      setImmediate(translate); // translate시킴
+      // setImmediate(translate); // translate시킴
     },
     [translate, reverseLanguage],
   );
@@ -129,13 +138,14 @@ const TranslateProvider: React.FC = ({children}) => {
       clear,
       fromLanguage,
       toLanguage,
-      translatedText,
+      translatedText: translatedData,
       translate,
       reverseLanguage,
       reverseTranslate,
       updateFromLanguage,
       updateToLanguage,
       applyHistory,
+      translatedData,
     }),
     [
       scrollViewRef,
@@ -147,7 +157,7 @@ const TranslateProvider: React.FC = ({children}) => {
       text,
       toLanguage,
       translate,
-      translatedText,
+      translatedData,
       updateFromLanguage,
       updateToLanguage,
       applyHistory,
@@ -156,6 +166,13 @@ const TranslateProvider: React.FC = ({children}) => {
 
   return (
     <TranslateContext.Provider value={contextValue}>
+      <TranslatorCrawler
+        fromLanguage={fromLanguage}
+        toLanguage={toLanguage}
+        loading={loading}
+        text={text}
+        onTranslated={onTranslated}
+      />
       {children}
     </TranslateContext.Provider>
   );

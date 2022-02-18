@@ -4,5 +4,6 @@
 
 - android splash loading too slow, draweable
 - translate with crawling
+- change keystore password
 - keystore
 - ios developer account
