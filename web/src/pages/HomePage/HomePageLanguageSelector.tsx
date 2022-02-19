@@ -26,7 +26,6 @@ const Devider = styled.div`
 const SelectorContainer = styled.div`
   flex-direction: row;
   align-items: center;
-  padding: 0 16px;
   flex: 1;
 `;
 
@@ -42,6 +41,10 @@ const LanguageSelect = styled.select`
   background: ${mdiMenuDown};
   font-size: 14px;
   border: none;
+  outline-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const ReverseButton = styled.div`

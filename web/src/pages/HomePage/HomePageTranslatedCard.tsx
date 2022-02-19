@@ -5,7 +5,9 @@ interface HomePageTranslatedCardProps {
   translator: Translator;
 }
 
-const HomePageTranslatedCard: React.FC<HomePageTranslatedCardProps> = () => {
+const HomePageTranslatedCard: React.FC<HomePageTranslatedCardProps> = ({
+  translator,
+}) => {
   return <div>HomePageTranslatedCard</div>;
 };
 
