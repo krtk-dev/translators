@@ -16,5 +16,6 @@ module.exports = {
   rules: {
     'import/no-named-as-default-member': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
 };

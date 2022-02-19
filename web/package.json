@@ -11,6 +11,7 @@
     "@testing-library/react": "^12.1.3",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.0",
+    "@types/jquery": "^3.5.13",
     "@types/node": "^16.11.25",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
@@ -28,7 +29,8 @@
     "react-scripts": "5.0.0",
     "react-select": "^5.2.2",
     "typescript": "^4.5.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "x-frame-bypass": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

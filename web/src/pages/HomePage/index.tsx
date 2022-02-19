@@ -39,7 +39,7 @@ const HomePage = () => {
         <HomePageInput />
         <TranslatedCardContainer>
           {TRANSLATORS.map(translator => (
-            <HomePageTranslatedCard translator={translator} />
+            <HomePageTranslatedCard key={translator} translator={translator} />
           ))}
         </TranslatedCardContainer>
       </ContentContainer>

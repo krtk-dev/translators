@@ -71,7 +71,9 @@ const HomePageLanguageSelector = () => {
             value={fromLanguage}
           >
             {LANGUAGES.map(lang => (
-              <option value={lang}>{languageTo.korean(lang)}</option>
+              <option key={lang} value={lang}>
+                {languageTo.korean(lang)}
+              </option>
             ))}
           </LanguageSelect>
           <Icon path={mdiMenuDown} size="24px" color={COLORS.red} />
@@ -85,7 +87,9 @@ const HomePageLanguageSelector = () => {
             value={toLanguage}
           >
             {LANGUAGES.map(lang => (
-              <option value={lang}>{languageTo.korean(lang)}</option>
+              <option key={lang} value={lang}>
+                {languageTo.korean(lang)}
+              </option>
             ))}
           </LanguageSelect>
           <Icon path={mdiMenuDown} size="24px" color={COLORS.red} />

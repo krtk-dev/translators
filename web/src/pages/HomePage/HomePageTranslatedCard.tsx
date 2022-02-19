@@ -19,7 +19,7 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled.text`
+const Title = styled.div`
   color: ${COLORS.white};
   font-weight: bold;
   margin-top: 16px;
@@ -27,11 +27,12 @@ const Title = styled.text`
   font-size: 18px;
 `;
 
-const Content = styled.text`
+const Content = styled.div`
   flex: 1;
   color: ${COLORS.white};
   margin-top: 8px;
   margin-left: 16px;
+  margin-right: 16px;
 `;
 
 const Footer = styled.div`
