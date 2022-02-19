@@ -29,6 +29,7 @@ jobs:
         run: |
           yarn
           yarn build
+          ls
           
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test -bail",
+    "test": "react-scripts test",
     "lint": "ls"
   },
   "eslintConfig": {
