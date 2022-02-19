@@ -1,4 +1,8 @@
 # 3가지 번역기 비교하다
 구글, 파파고, 카카오 번역기 비교 서비스
 
-- ios developer account
+- upload ios
+- web
+- cicd
+- lint
+- seo
