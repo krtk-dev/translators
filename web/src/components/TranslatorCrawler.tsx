@@ -20,9 +20,9 @@ const TranslatorCrawler: React.FC<TranslatorCrawlerProps> = props => {
     if (!text) return;
     const _timer = setTimeout(() => {
       onTranslated({
-        google: `"${text}"를(을)`,
-        naver: ` ${languageTo.korean(toLanguage)}로 번역한 결과가 궁금하시면`,
-        kakao: '오른쪽 상단 버튼을 통해 앱에서 찾아 보실 수 있습니다!',
+        google: `번역완료!`,
+        naver: `오른쪽 상단 버튼을 눌러`,
+        kakao: '결과를 확인해주세요!',
       });
     }, 1000);
     setTimer(_timer);
