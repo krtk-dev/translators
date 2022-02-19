@@ -13,5 +13,9 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks'],
-  rules: {},
+  rules: {
+    'import/no-named-as-default-member': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+  },
 };

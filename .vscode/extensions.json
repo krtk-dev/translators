@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "dsznajder.es7-react-js-snippets",
+    "dbaeumer.vscode-eslint",
+    "Orta.vscode-jest",
+    "esbenp.prettier-vscode",
+    "styled-components.vscode-styled-components"
+  ]
+}

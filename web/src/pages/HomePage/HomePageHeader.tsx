@@ -19,6 +19,7 @@ const Container = styled.div`
   @media (max-width: ${BREAK_POINT}) {
     padding: 0px 16px;
   }
+  z-index: 99;
 `;
 
 const Title = styled.a`
