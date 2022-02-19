@@ -21,6 +21,13 @@ const ContentContainer = styled.div`
 
 const TranslatedCardContainer = styled.div`
   flex: 1;
+  padding: 0 16px;
+  padding-top: 32px;
+  align-items: center;
+  @media (max-width: ${BREAK_POINT}) {
+    flex: none;
+    padding-top: 0px;
+  }
 `;
 
 const HomePage = () => {

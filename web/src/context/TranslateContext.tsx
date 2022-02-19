@@ -41,11 +41,19 @@ const TranslateProvider: React.FC = ({ children }) => {
   const [toLanguage, setToLanguage] = useState<Language>('en');
 
   useEffect(() => {
-    setTranslatedData({
-      google: '로딩중...',
-      kakao: '로딩중...',
-      naver: '로딩중...',
-    });
+    if (text) {
+      setTranslatedData({
+        google: '로딩중...',
+        kakao: '로딩중...',
+        naver: '로딩중...',
+      });
+    } else {
+      setTranslatedData({
+        google: '',
+        kakao: '',
+        naver: '',
+      });
+    }
   }, [text]);
 
   const reverseLanguage = useCallback(() => {
