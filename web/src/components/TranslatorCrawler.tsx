@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Language } from '../constants/types';
 import { TranslatedData } from '../context/TranslateContext';
-import languageTo from '../util/languageTo';
 
 interface TranslatorCrawlerProps {
   fromLanguage: Language;
@@ -11,7 +10,7 @@ interface TranslatorCrawlerProps {
 }
 
 const TranslatorCrawler: React.FC<TranslatorCrawlerProps> = props => {
-  const { text, toLanguage, onTranslated } = props;
+  const { text, onTranslated } = props;
 
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
 
