@@ -4,7 +4,4 @@
 [UI/UX](https://www.figma.com/file/iEKYQOU8kCFyLE8voCKOCY/Translators?node-id=0%3A1)
 
 - upload ios
-- logo & favicon
-- ui
-- seo
-- recommend extendtions
+- documentation
