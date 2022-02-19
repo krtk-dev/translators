@@ -26,7 +26,9 @@ export type TranslateContextType = {
   reverseTranslate: (text: string) => void;
 };
 
-export const TranslateContext = createContext<TranslateContextType>({} as any);
+export const TranslateContext = createContext<TranslateContextType>(
+  {} as TranslateContextType,
+);
 
 const TranslateProvider: React.FC = ({ children }) => {
   const [text, setText] = useState('');
@@ -109,12 +111,12 @@ const TranslateProvider: React.FC = ({ children }) => {
 
   return (
     <TranslateContext.Provider value={contextValue}>
-      {/* <TranslatorCrawler
+      <TranslatorCrawler
         fromLanguage={fromLanguage}
         toLanguage={toLanguage}
         text={text}
         onTranslated={onTranslated}
-      /> */}
+      />
       {children}
     </TranslateContext.Provider>
   );

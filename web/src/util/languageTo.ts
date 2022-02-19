@@ -1,4 +1,4 @@
-import {Language} from '../constants/types';
+import { Language } from '../constants/types';
 
 export const korean = (language: Language) => {
   switch (language) {

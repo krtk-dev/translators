@@ -10,4 +10,13 @@ body {
 
 div {
   display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
 }
