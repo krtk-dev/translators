@@ -20,7 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "lint": "ls"
+    "lint": "ls -a"
   },
   "eslintConfig": {
     "extends": [
