@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "app"
+		},
+		{
+			"path": "web"
 		}
 	],
 	"settings": {}
