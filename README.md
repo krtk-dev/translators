@@ -4,10 +4,9 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
 
-<img src="https://img.shields.io/badge/React-222222?style=for-the-badge&logo=React&logoColor=#61DAFB">
-<img src="https://img.shields.io/badge/ReactNative-222222?style=for-the-badge&logo=React&logoColor=#61DAFB">
-<img src="https://img.shields.io/badge/Typescript-222222?style=for-the-badge&logo=Typescript&logoColor=#3178C6">
+<img src="https://img.shields.io/badge/React-222222?style=for-the-badge&logo=React&logoColor=#61DAFB"> <img src="https://img.shields.io/badge/ReactNative-222222?style=for-the-badge&logo=React&logoColor=#61DAFB"> <img src="https://img.shields.io/badge/Typescript-222222?style=for-the-badge&logo=Typescript&logoColor=#3178C6">
 
+<img width="300" src="https://user-images.githubusercontent.com/48207131/154833198-8823ffe7-294d-4c11-a63a-c7209e5aece1.gif">
 
 ### Introduction
 
