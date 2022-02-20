@@ -34,8 +34,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "test": "react-scripts test",
-    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx"
+    "test:coverage": "npm run test -- --coverage --watchAll=false",
+    "spec": "react-scripts test"
   },
   "browserslist": {
     "production": [
