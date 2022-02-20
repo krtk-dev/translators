@@ -94,9 +94,10 @@ const TranslateProvider: React.FC = ({children}) => {
     (_text: string) => {
       setText(_text); // text를 적용하고
       reverseLanguage(); // 언어도 바꿈
+      scrollViewRef.current?.scrollTo({y: 0, animated: true});
       // setImmediate(translate); // translate시킴
     },
-    [translate, reverseLanguage],
+    [translate, reverseLanguage, scrollViewRef],
   );
 
   const updateFromLanguage = useCallback(
