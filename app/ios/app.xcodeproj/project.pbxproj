@@ -489,6 +489,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = JKF63VQPY3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -501,7 +502,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.koreanthinker.translators;
+				PRODUCT_BUNDLE_IDENTIFIER = com.koreanthinker.translators1;
 				PRODUCT_NAME = app;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -517,6 +518,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = JKF63VQPY3;
 				INFOPLIST_FILE = app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -528,7 +530,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.koreanthinker.translators;
+				PRODUCT_BUNDLE_IDENTIFIER = com.koreanthinker.translators1;
 				PRODUCT_NAME = app;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
