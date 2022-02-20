@@ -1,6 +1,7 @@
 [![App](https://github.com/krtk-dev/translators/actions/workflows/ci-app.yml/badge.svg)](https://github.com/krtk-dev/translators/actions/workflows/ci-app.yml)
 [![Web](https://github.com/krtk-dev/translators/actions/workflows/ci-web.yml/badge.svg)](https://github.com/krtk-dev/translators/actions/workflows/ci-web.yml)
 [![Deploy Web](https://github.com/krtk-dev/translators/actions/workflows/cd-web.yml/badge.svg)](https://github.com/krtk-dev/translators/actions/workflows/cd-web.yml)
+[![codecov](https://codecov.io/gh/krtk-dev/translators/branch/master/graph/badge.svg)](https://codecov.io/gh/krtk-dev/translators)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
 
