@@ -5,8 +5,8 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import TranslatorCrawler from '../components/TranslatorCrawler';
 import { Language } from '../constants/types';
+import languageTo from '../util/languageTo';
 
 export interface TranslatedData {
   google: string;
@@ -16,14 +16,14 @@ export interface TranslatedData {
 
 export type TranslateContextType = {
   text: string;
-  onChangeText: (text: string) => void;
   fromLanguage: Language;
   toLanguage: Language;
   translatedData: TranslatedData;
-  reverseLanguage: () => void;
+  onChangeText: (text: string) => void;
+  reverseTranslate: (text: string) => void;
   updateFromLanguage: (language: Language) => void;
   updateToLanguage: (language: Language) => void;
-  reverseTranslate: (text: string) => void;
+  reverseLanguage: () => void;
 };
 
 export const TranslateContext = createContext<TranslateContextType>(
@@ -116,15 +116,26 @@ const TranslateProvider: React.FC = ({ children }) => {
       updateToLanguage,
     ],
   );
+  // -------------- mock data -------------- //
+  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
+  useEffect(() => {
+    timer && clearTimeout(timer);
+    if (!text) return;
+    const _timer = setTimeout(() => {
+      onTranslated({
+        google: `번역완료!`,
+        naver: `(${text})를(을) ${languageTo.korean(
+          toLanguage,
+        )}로 번역한 결과는`,
+        kakao: '오른쪽 상단 앱스토어 버튼을 눌러, 앱애서 확인해주세요!',
+      });
+    }, 1000);
+    setTimer(_timer);
+  }, [text]);
+  // -------------- mock data -------------- //
 
   return (
     <TranslateContext.Provider value={contextValue}>
-      <TranslatorCrawler
-        fromLanguage={fromLanguage}
-        toLanguage={toLanguage}
-        text={text}
-        onTranslated={onTranslated}
-      />
       {children}
     </TranslateContext.Provider>
   );
