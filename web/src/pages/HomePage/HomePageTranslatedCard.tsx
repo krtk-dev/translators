@@ -65,7 +65,10 @@ const HomePageTranslatedCard: React.FC<HomePageTranslatedCardProps> = ({
   const content = translatedData[translator];
 
   return (
-    <Container style={{ backgroundColor: COLORS[translator] }}>
+    <Container
+      className="translated-card"
+      style={{ backgroundColor: COLORS[translator] }}
+    >
       <Title>{translator.toUpperCase()}</Title>
       <Content>{content}</Content>
       <Footer>
