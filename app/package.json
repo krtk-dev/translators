@@ -22,6 +22,7 @@
     "ios:clean": "cd ios && xcodebuild clean",
     "ios:clean:force": "rm -rf ~/Library/Developer/Xcode/DerivedData/*",
     "test": "NODE_ENV=test jest",
+    "test:coverage": "npm run test -- --coverage --watchAll=false",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "oss": "npx license-checker --json --out ./src/assets/oss.json"
   },
