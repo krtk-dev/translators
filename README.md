@@ -3,6 +3,8 @@
 [![Deploy Web](https://github.com/krtk-dev/translators/actions/workflows/cd-web.yml/badge.svg)](https://github.com/krtk-dev/translators/actions/workflows/cd-web.yml)
 [![codecov](https://codecov.io/gh/krtk-dev/translators/branch/main/graph/badge.svg)](https://codecov.io/gh/krtk-dev/translators)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
+[![License GPL3.0](https://img.shields.io/github/license/krtk-dev/translators?style=plat)](LICENSE)
+![Stars](https://img.shields.io/github/stars/krtk-dev/translators?style=social)
 
 
 <img src="https://img.shields.io/badge/React-222222?style=for-the-badge&logo=React&logoColor=#61DAFB"> <img src="https://img.shields.io/badge/ReactNative-222222?style=for-the-badge&logo=React&logoColor=#61DAFB"> <img src="https://img.shields.io/badge/Typescript-222222?style=for-the-badge&logo=Typescript&logoColor=#3178C6"> <img src="https://img.shields.io/badge/Jest-222222?style=for-the-badge&logo=Jest&logoColor=#C21325">
