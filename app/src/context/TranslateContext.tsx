@@ -8,7 +8,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {Keyboard, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import InAppReview from 'react-native-in-app-review';
 import {LanguageCode} from 'react-native-translator';
 import Tts from 'react-native-tts';
@@ -46,6 +46,7 @@ const TranslateProvider: React.FC = ({children}) => {
   const [fromLanguage, setFromLanguage] =
     useState<LanguageCode<'google'>>('ko');
   const [toLanguage, setToLanguage] = useState<LanguageCode<'google'>>('en');
+  const [addHistoryTimer, setAddHistoryTimer] = useState<NodeJS.Timeout>();
 
   const clear = useCallback(() => {
     // 초기화
@@ -107,6 +108,17 @@ const TranslateProvider: React.FC = ({children}) => {
       Tts.setDefaultLanguage('en-IE');
     }
   }, [toLanguage]);
+
+  useEffect(() => {
+    // 3초동안 새로운 입력이 없으면 최근 검색에 추가
+    if (addHistoryTimer) clearTimeout(addHistoryTimer);
+    if (!text) return;
+    const newTimer = setTimeout(
+      () => addHistory({fromLanguage, toLanguage, text}),
+      3000,
+    );
+    setAddHistoryTimer(newTimer);
+  }, [text, fromLanguage, toLanguage]);
 
   const contextValue = useMemo<TranslateContextType>(
     () => ({
