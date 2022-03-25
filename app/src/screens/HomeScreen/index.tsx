@@ -8,7 +8,6 @@ import HomeScreenRecentCard from './HomeScreenRecentCard';
 import {CardSequenceContext} from '../../context/CardSequenceContex';
 import HomeScreenTranslatedCard from './HomeScreenTranslatedCard';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import HomeScreenTranslateFab from './HomeScreenTranslateFab';
 import HomeScreenInput from './HomeScreenInput';
 
 const HomeScreen = () => {
@@ -34,7 +33,6 @@ const HomeScreen = () => {
         {!!historys.length && <HomeScreenRecentCard {...historys[0]} />}
         <View style={{height: bottom + 56 + 48}} />
       </ScrollView>
-      <HomeScreenTranslateFab />
     </View>
   );
 };

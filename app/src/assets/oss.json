@@ -736,7 +736,7 @@
   },
   "@egjs/hammerjs@2.0.17": {
     "licenses": "MIT",
-    "repository": "https://github.com/naver/hammer.js",
+    "repository": "https://github.com/papago/hammer.js",
     "path": "/Users/hyun/Github/krtk/translators/app/node_modules/@egjs/hammerjs",
     "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/@egjs/hammerjs/LICENSE.md"
   },

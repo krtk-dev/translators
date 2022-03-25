@@ -1,6 +1,5 @@
 import {Share, StyleSheet, Text, View} from 'react-native';
 import React, {useCallback, useContext, useState} from 'react';
-import {Translator} from '../../constants/types';
 import {TranslateContext} from '../../context/TranslateContext';
 import {COLORS, SHADOW} from '../../constants/styles';
 import Typography from '../../components/Typography';
@@ -10,34 +9,37 @@ import Clipboard from '@react-native-community/clipboard';
 import {Menu, MenuItem} from 'react-native-material-menu';
 import useNavigation from '../../hooks/useNavigation';
 import Tts from 'react-native-tts';
+import Translator, {TranslatorType} from 'react-native-translator';
 
 interface HomeScreenTranslatedCardProps {
-  translator: Translator;
+  translator: TranslatorType;
 }
 
 const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
   translator,
 }) => {
   const {navigate} = useNavigation();
-  const {translatedData, reverseTranslate} = useContext(TranslateContext);
+  const {reverseTranslate, fromLanguage, toLanguage, text} =
+    useContext(TranslateContext);
   const [moreVisible, setMoreVisible] = useState(false);
-
-  const text =
-    typeof translatedData[translator] === 'string'
-      ? (translatedData[translator] as string)
-      : translatedData[translator] === null
-      ? ''
-      : '시간초과';
+  const [result, setResult] = useState('');
 
   const onTTS = useCallback(async () => {
     await Tts.stop();
-    Tts.speak(text);
-  }, [text]);
+    Tts.speak(result);
+  }, [result]);
 
   return (
     <View style={[styles.container, {backgroundColor: COLORS[translator]}]}>
+      <Translator
+        type={translator}
+        value={text}
+        onTranslated={t => setResult(t)}
+        from={fromLanguage}
+        to={toLanguage}
+      />
       <Typography style={styles.title}>{translator.toUpperCase()}</Typography>
-      <Typography style={styles.text}>{text}</Typography>
+      <Typography style={styles.text}>{result}</Typography>
       <View style={styles.footer}>
         <BorderlessButton onPress={onTTS} style={styles.icon}>
           <Icon color={COLORS.white} size={22} name="volume-up" />
@@ -64,7 +66,7 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
             onPress={() => {
               setMoreVisible(false);
               setTimeout(() => {
-                Share.share({message: text});
+                Share.share({message: result});
               }, 1000);
             }}
           >
@@ -73,7 +75,7 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
           <MenuItem
             onPress={() => {
               setMoreVisible(false);
-              navigate('Full', {color: COLORS[translator], content: text});
+              navigate('Full', {color: COLORS[translator], content: result});
             }}
           >
             전체화면
@@ -81,7 +83,7 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
           <MenuItem
             onPress={() => {
               setMoreVisible(false);
-              reverseTranslate(text);
+              reverseTranslate(result);
             }}
           >
             역번역

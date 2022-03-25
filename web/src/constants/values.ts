@@ -1,6 +1,6 @@
 import { Translator } from './types';
 
-export const TRANSLATORS: Translator[] = ['google', 'naver', 'kakao'];
+export const TRANSLATORS: Translator[] = ['google', 'papago', 'kakao'];
 export const LANGUAGES = [
   'kr',
   'en',

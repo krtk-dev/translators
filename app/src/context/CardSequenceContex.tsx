@@ -21,7 +21,7 @@ export const CardSequenceContext = createContext<CardSequenceContextType>(
 const CardSequenceProvider: React.FC = ({children}) => {
   const [cardSequence, setCardSequence] = useState<Translator[]>([
     'google',
-    'naver',
+    'papago',
     'kakao',
   ]);
 

@@ -18,7 +18,7 @@ import {HistoryContext} from './HistoryContext';
 export interface TranslatedData {
   google: string | null | Error;
   kakao: string | null | Error;
-  naver: string | null | Error;
+  papago: string | null | Error;
 }
 
 export type TranslateContextType = {
@@ -30,7 +30,6 @@ export type TranslateContextType = {
   toLanguage: Language;
   translatedData: TranslatedData;
   clear: () => void;
-  translate: () => void;
   reverseLanguage: () => void;
   updateFromLanguage: (language: Language) => void;
   updateToLanguage: (language: Language) => void;
@@ -48,7 +47,7 @@ const TranslateProvider: React.FC = ({children}) => {
   const [translatedData, setTranslatedData] = useState<TranslatedData>({
     google: null,
     kakao: null,
-    naver: null,
+    papago: null,
   });
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -58,7 +57,7 @@ const TranslateProvider: React.FC = ({children}) => {
   const clear = useCallback(() => {
     // 초기화
     setText('');
-    setTranslatedData({google: null, kakao: null, naver: null});
+    setTranslatedData({google: null, kakao: null, papago: null});
   }, []);
 
   const translate = useCallback(async () => {
@@ -68,21 +67,11 @@ const TranslateProvider: React.FC = ({children}) => {
     //------------- 실행 전 -------------//
     Keyboard.dismiss(); // 키보드 닫기
     addHistory({text, fromLanguage, toLanguage}); // 검색기록에 추가
-    setTranslatedData({google: null, kakao: null, naver: null}); // 초기화
+    setTranslatedData({google: null, kakao: null, papago: null}); // 초기화
     setCount(prev => prev + 1); // 리뷰용 카운트
     //------------- 실행 요청 -------------//
     setLoading(true); // 로딩 시작
   }, [addHistory, fromLanguage, loading, text, toLanguage, count]);
-
-  const onTranslated = useCallback(
-    (data: TranslatedData) => {
-      //------------- 실행 후 -------------//
-      setLoading(false); // 로딩 끝
-      setTranslatedData(data);
-      if (count !== 0 && count % 10 === 0) InAppReview.RequestInAppReview();
-    },
-    [count],
-  );
 
   const reverseLanguage = useCallback(() => {
     // 원문과 번역할 언어를 서로 바꿈
@@ -167,13 +156,6 @@ const TranslateProvider: React.FC = ({children}) => {
 
   return (
     <TranslateContext.Provider value={contextValue}>
-      <TranslatorCrawler
-        fromLanguage={fromLanguage}
-        toLanguage={toLanguage}
-        loading={loading}
-        text={text}
-        onTranslated={onTranslated}
-      />
       {children}
     </TranslateContext.Provider>
   );
