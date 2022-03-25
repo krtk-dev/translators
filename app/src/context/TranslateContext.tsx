@@ -1,3 +1,4 @@
+import Clipboard from '@react-native-community/clipboard';
 import React, {
   createContext,
   useCallback,
@@ -32,6 +33,7 @@ export type TranslateContextType = {
   updateFromLanguage: (language: LanguageCode<'google'>) => void;
   updateToLanguage: (language: LanguageCode<'google'>) => void;
   reverseTranslate: (text: string) => void;
+  applyClipboard: () => void;
   applyHistory: (history: History) => void;
 };
 
@@ -92,6 +94,12 @@ const TranslateProvider: React.FC = ({children}) => {
     setText(history.text);
     scrollViewRef.current?.scrollTo({y: 0, animated: true});
   }, []);
+
+  const applyClipboard = useCallback(async () => {
+    const content = await Clipboard.getString();
+    setText(content);
+  }, []);
+
   useEffect(() => {
     try {
       Tts.setDefaultLanguage(languageTo.ttsLanguage(toLanguage));
@@ -113,6 +121,7 @@ const TranslateProvider: React.FC = ({children}) => {
       updateFromLanguage,
       updateToLanguage,
       applyHistory,
+      applyClipboard,
     }),
     [
       scrollViewRef,
@@ -126,6 +135,7 @@ const TranslateProvider: React.FC = ({children}) => {
       updateFromLanguage,
       updateToLanguage,
       applyHistory,
+      applyClipboard,
     ],
   );
 
