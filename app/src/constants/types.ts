@@ -1,11 +1,11 @@
-import {LANGUAGES} from './values';
+import {LanguageCode} from 'react-native-translator';
+import {LANGUAGES_CODES} from './values';
 
 export interface History {
   id: string;
-  fromLanguage: Language;
-  toLanguage: Language;
+  fromLanguage: LanguageCode<'google'>;
+  toLanguage: LanguageCode<'google'>;
   text: string;
 }
 
-export type Translator = 'google' | 'papago' | 'kakao';
-export type Language = typeof LANGUAGES[number];
+export type TranslatorType = 'google' | 'papago' | 'kakao';

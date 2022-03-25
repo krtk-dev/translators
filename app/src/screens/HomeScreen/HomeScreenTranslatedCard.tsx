@@ -9,14 +9,17 @@ import Clipboard from '@react-native-community/clipboard';
 import {Menu, MenuItem} from 'react-native-material-menu';
 import useNavigation from '../../hooks/useNavigation';
 import Tts from 'react-native-tts';
-import Translator, {TranslatorType} from 'react-native-translator';
+import Translator, {
+  languageCodeConverter,
+  TranslatorType,
+} from 'react-native-translator';
 
 interface HomeScreenTranslatedCardProps {
-  translator: TranslatorType;
+  translatorType: TranslatorType;
 }
 
 const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
-  translator,
+  translatorType,
 }) => {
   const {navigate} = useNavigation();
   const {reverseTranslate, fromLanguage, toLanguage, text} =
@@ -30,15 +33,19 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
   }, [result]);
 
   return (
-    <View style={[styles.container, {backgroundColor: COLORS[translator]}]}>
+    <View style={[styles.container, {backgroundColor: COLORS[translatorType]}]}>
       <Translator
-        type={translator}
+        type={translatorType}
         value={text}
         onTranslated={t => setResult(t)}
-        from={fromLanguage}
-        to={toLanguage}
+        from={
+          languageCodeConverter('google', translatorType, fromLanguage) || 'en'
+        }
+        to={languageCodeConverter('google', translatorType, toLanguage) || 'ko'}
       />
-      <Typography style={styles.title}>{translator.toUpperCase()}</Typography>
+      <Typography style={styles.title}>
+        {translatorType.toUpperCase()}
+      </Typography>
       <Typography style={styles.text}>{result}</Typography>
       <View style={styles.footer}>
         <BorderlessButton onPress={onTTS} style={styles.icon}>
@@ -75,7 +82,10 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
           <MenuItem
             onPress={() => {
               setMoreVisible(false);
-              navigate('Full', {color: COLORS[translator], content: result});
+              navigate('Full', {
+                color: COLORS[translatorType],
+                content: result,
+              });
             }}
           >
             전체화면

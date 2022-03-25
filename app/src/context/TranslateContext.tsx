@@ -9,9 +9,9 @@ import React, {
 } from 'react';
 import {Keyboard, ScrollView} from 'react-native';
 import InAppReview from 'react-native-in-app-review';
+import {LanguageCode} from 'react-native-translator';
 import Tts from 'react-native-tts';
-import TranslatorCrawler from '../components/TranslatorCrawler';
-import {History, Language} from '../constants/types';
+import {History} from '../constants/types';
 import languageTo from '../util/languageTo';
 import {HistoryContext} from './HistoryContext';
 
@@ -26,13 +26,13 @@ export type TranslateContextType = {
   text: string;
   onChangeText: (text: string) => void;
   loading: boolean;
-  fromLanguage: Language;
-  toLanguage: Language;
+  fromLanguage: LanguageCode<'google'>;
+  toLanguage: LanguageCode<'google'>;
   translatedData: TranslatedData;
   clear: () => void;
   reverseLanguage: () => void;
-  updateFromLanguage: (language: Language) => void;
-  updateToLanguage: (language: Language) => void;
+  updateFromLanguage: (language: LanguageCode<'google'>) => void;
+  updateToLanguage: (language: LanguageCode<'google'>) => void;
   reverseTranslate: (text: string) => void;
   applyHistory: (history: History) => void;
 };
@@ -51,8 +51,9 @@ const TranslateProvider: React.FC = ({children}) => {
   });
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [fromLanguage, setFromLanguage] = useState<Language>('kr');
-  const [toLanguage, setToLanguage] = useState<Language>('en');
+  const [fromLanguage, setFromLanguage] =
+    useState<LanguageCode<'google'>>('ko');
+  const [toLanguage, setToLanguage] = useState<LanguageCode<'google'>>('en');
 
   const clear = useCallback(() => {
     // 초기화
@@ -91,7 +92,7 @@ const TranslateProvider: React.FC = ({children}) => {
 
   const updateFromLanguage = useCallback(
     // 원문 언어 변경
-    (language: Language) => {
+    (language: LanguageCode<'google'>) => {
       if (toLanguage === language) setToLanguage(fromLanguage); // 같은 언어 끼리 번역 방지
       setFromLanguage(language);
     },
@@ -100,7 +101,7 @@ const TranslateProvider: React.FC = ({children}) => {
 
   const updateToLanguage = useCallback(
     // 변역 할 언어 변경
-    (language: Language) => {
+    (language: LanguageCode<'google'>) => {
       if (fromLanguage === language) setFromLanguage(toLanguage); // 같은 언어 끼리 번역 방지
       setToLanguage(language);
     },

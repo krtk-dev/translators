@@ -5,15 +5,15 @@ import CardSequenceScreenHeader from './CardSequenceScreenHeader';
 import DraggableFlatList, {
   DragEndParams,
 } from 'react-native-draggable-flatlist';
-import {CardSequenceContext} from '../../context/CardSequenceContex';
+import {CardSequenceContext} from '../../context/CardSequenceContext';
 import CardSequenceTranslatorCard from './CardSequenceScreenTranslatorCard';
-import {Translator} from '../../constants/types';
+import {TranslatorType} from '../../constants/types';
 
 const CardSequenceScreen = () => {
   const {cardSequence, updateCardSequence} = useContext(CardSequenceContext);
 
   const onDragEnd = useCallback(
-    ({data}: DragEndParams<Translator>) => {
+    ({data}: DragEndParams<TranslatorType>) => {
       updateCardSequence(data);
     },
     [updateCardSequence],

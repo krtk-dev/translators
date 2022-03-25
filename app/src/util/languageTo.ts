@@ -1,15 +1,17 @@
-import {Language} from '../constants/types';
+import {LanguageCode} from 'react-native-translator';
 
-export const korean = (language: Language) => {
+export const korean = (language: LanguageCode<'google'>) => {
   switch (language) {
-    case 'kr':
+    case 'ko':
       return '한국어';
     case 'en':
       return '영어';
-    case 'jp':
+    case 'ja':
       return '일본어';
-    case 'cn':
-      return '중국어';
+    case 'zh-CN':
+      return '중국어 간체';
+    case 'zh-TW':
+      return '중국어 번체';
     case 'vi':
       return '베트남어';
     case 'de':
@@ -20,46 +22,29 @@ export const korean = (language: Language) => {
       return '프랑스어';
     case 'it':
       return '이탈리아어';
+    case 'ru':
+      return '러시아어';
+    case 'th':
+      return '태국어';
+    case 'id':
+      return '인도네시아어';
     default:
       return '오류';
   }
 };
 
-export const kakaoLanguage = (language: Language) => language;
-export const papagoLanguage = (language: Language) => {
+export const ttsLanguage = (language: LanguageCode<'google'>) => {
   switch (language) {
-    case 'kr':
-      return 'ko';
-    case 'jp':
-      return 'ja';
-    case 'cn':
-      return 'zh-CN';
-    default:
-      return language;
-  }
-};
-export const googleLanguage = (language: Language) => {
-  switch (language) {
-    case 'kr':
-      return 'ko';
-    case 'jp':
-      return 'ja';
-    case 'cn':
-      return 'zh-CN';
-    default:
-      return language;
-  }
-};
-export const ttsLanguage = (language: Language) => {
-  switch (language) {
-    case 'kr':
+    case 'ko':
       return 'ko-KR';
     case 'en':
       return 'en-IE';
-    case 'jp':
+    case 'ja':
       return 'ja-JP';
-    case 'cn':
+    case 'zh-CN':
       return 'zh-CN';
+    case 'zh-TW':
+      return 'zh-TW';
     case 'vi':
       return 'vi-VI';
     case 'de':
@@ -70,6 +55,12 @@ export const ttsLanguage = (language: Language) => {
       return 'fr-FR';
     case 'it':
       return 'it-IT';
+    case 'ru':
+      return 'ru-RU';
+    case 'th':
+      return 'th-TH';
+    case 'id':
+      return 'id-ID';
     default:
       return 'en-IE';
   }
@@ -78,7 +69,4 @@ export const ttsLanguage = (language: Language) => {
 export default {
   korean,
   ttsLanguage,
-  googleLanguage,
-  kakaoLanguage,
-  papagoLanguage,
 };

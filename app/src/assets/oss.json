@@ -736,7 +736,7 @@
   },
   "@egjs/hammerjs@2.0.17": {
     "licenses": "MIT",
-    "repository": "https://github.com/papago/hammer.js",
+    "repository": "https://github.com/naver/hammer.js",
     "path": "/Users/hyun/Github/krtk/translators/app/node_modules/@egjs/hammerjs",
     "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/@egjs/hammerjs/LICENSE.md"
   },
@@ -967,6 +967,14 @@
     "path": "/Users/hyun/Github/krtk/translators/app/node_modules/@react-native-community/cli",
     "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/@react-native-community/cli/LICENSE"
   },
+  "@react-native-community/clipboard@1.5.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/react-native-community/clipboard",
+    "publisher": "M.Haris Baig",
+    "email": "harisbaig100@gmail.com",
+    "path": "/Users/hyun/Github/krtk/translators/app/node_modules/@react-native-community/clipboard",
+    "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/@react-native-community/clipboard/LICENSE"
+  },
   "@react-native-community/eslint-config@2.0.0": {
     "licenses": "MIT",
     "repository": "https://github.com/facebook/react-native",
@@ -978,6 +986,13 @@
     "repository": "https://github.com/facebook/react-native",
     "path": "/Users/hyun/Github/krtk/translators/app/node_modules/@react-native-community/eslint-plugin",
     "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/@react-native-community/eslint-plugin/README.md"
+  },
+  "@react-native-community/hooks@2.8.1": {
+    "licenses": "ISC",
+    "repository": "https://github.com/react-native-community/hooks",
+    "publisher": "Nader Dabit",
+    "path": "/Users/hyun/Github/krtk/translators/app/node_modules/@react-native-community/hooks",
+    "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/@react-native-community/hooks/LICENSE"
   },
   "@react-native/assets@1.0.0": {
     "licenses": "MIT",
@@ -1060,6 +1075,14 @@
     "publisher": "Christian Johansen",
     "path": "/Users/hyun/Github/krtk/translators/app/node_modules/@sinonjs/fake-timers",
     "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/@sinonjs/fake-timers/LICENSE"
+  },
+  "@testing-library/react-native@7.2.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/callstack/react-native-testing-library",
+    "publisher": "Michał Pierzchała",
+    "email": "thymikee@gmail.com",
+    "path": "/Users/hyun/Github/krtk/translators/app/node_modules/@testing-library/react-native",
+    "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/@testing-library/react-native/LICENSE"
   },
   "@tootallnate/once@1.1.2": {
     "licenses": "MIT",
@@ -5459,11 +5482,27 @@
     "path": "/Users/hyun/Github/krtk/translators/app/node_modules/pretty-format/node_modules/react-is",
     "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/pretty-format/node_modules/react-is/LICENSE"
   },
+  "react-native-auto-size-text@1.1.1": {
+    "licenses": "MIT",
+    "publisher": "Everaldo Junior",
+    "email": "juniorklawa10@gmail.com",
+    "path": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-auto-size-text",
+    "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-auto-size-text/LICENSE"
+  },
   "react-native-codegen@0.0.8": {
     "licenses": "MIT",
     "repository": "https://github.com/facebook/react-native",
     "path": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-codegen",
     "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-codegen/README.md"
+  },
+  "react-native-device-info@8.4.9": {
+    "licenses": "MIT",
+    "repository": "https://github.com/react-native-device-info/react-native-device-info",
+    "publisher": "Rebecca Hughes",
+    "email": "rebecca@learnium.net",
+    "url": "https://github.com/rebeccahughes",
+    "path": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-device-info",
+    "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-device-info/LICENSE"
   },
   "react-native-draggable-flatlist@3.0.5": {
     "licenses": "MIT",
@@ -5479,6 +5518,14 @@
     "email": "krzys.magiera@gmail.com",
     "path": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-gesture-handler",
     "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-gesture-handler/LICENSE"
+  },
+  "react-native-in-app-review@3.3.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/MinaSamir11/react-native-in-app-review",
+    "publisher": "Mina Samir Shafik",
+    "email": "menasamer11@gmail.com",
+    "path": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-in-app-review",
+    "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-in-app-review/LICENSE"
   },
   "react-native-material-menu@2.0.0": {
     "licenses": "MIT",
@@ -5527,6 +5574,14 @@
     "email": "talk@dmtry.me",
     "path": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-status-bar-height",
     "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-status-bar-height/LICENSE"
+  },
+  "react-native-translator@1.1.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/koreanthinker/react-native-translator",
+    "publisher": "KoreanThinker",
+    "email": "coderhyun476@gmail.com",
+    "path": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-translator",
+    "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-translator/LICENSE"
   },
   "react-native-tts@4.1.0": {
     "licenses": "MIT",

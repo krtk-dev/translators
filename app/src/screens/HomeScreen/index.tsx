@@ -5,7 +5,7 @@ import HomeScreenLanguageSelector from './HomeScreenLanguageSelector';
 import {TranslateContext} from '../../context/TranslateContext';
 import {HistoryContext} from '../../context/HistoryContext';
 import HomeScreenRecentCard from './HomeScreenRecentCard';
-import {CardSequenceContext} from '../../context/CardSequenceContex';
+import {CardSequenceContext} from '../../context/CardSequenceContext';
 import HomeScreenTranslatedCard from './HomeScreenTranslatedCard';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import HomeScreenInput from './HomeScreenInput';
@@ -27,8 +27,11 @@ const HomeScreen = () => {
         showsVerticalScrollIndicator={false}
       >
         <HomeScreenInput />
-        {cardSequence.map(translator => (
-          <HomeScreenTranslatedCard key={translator} translator={translator} />
+        {cardSequence.map(translatorType => (
+          <HomeScreenTranslatedCard
+            key={translatorType}
+            translatorType={translatorType}
+          />
         ))}
         {!!historys.length && <HomeScreenRecentCard {...historys[0]} />}
         <View style={{height: bottom + 56 + 48}} />

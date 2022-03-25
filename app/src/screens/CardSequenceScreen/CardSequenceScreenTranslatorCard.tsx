@@ -4,11 +4,11 @@ import {COLORS} from '../../constants/styles';
 import Typography from '../../components/Typography';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import BaseButton from '../../components/BaseButton';
-import {Translator} from '../../constants/types';
+import {TranslatorType} from '../../constants/types';
 import {RenderItemParams} from 'react-native-draggable-flatlist';
 
 const CardSequenceTranslatorCard: React.FC<
-  RenderItemParams<Translator>
+  RenderItemParams<TranslatorType>
 > = props => {
   const {item, drag, isActive} = props;
 
