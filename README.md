@@ -3,9 +3,9 @@
 [![Deploy Web](https://github.com/krtk-dev/translators/actions/workflows/cd-web.yml/badge.svg)](https://github.com/krtk-dev/translators/actions/workflows/cd-web.yml)
 [![codecov](https://codecov.io/gh/krtk-dev/translators/branch/main/graph/badge.svg)](https://codecov.io/gh/krtk-dev/translators)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
-[![License GPL3.0](https://img.shields.io/github/license/krtk-dev/translators?style=plat)](LICENSE)
 ![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fkrtk-dev%2Ftranslators&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)
 ![Stars](https://img.shields.io/github/stars/krtk-dev/translators?style=social)
+<!-- [![License GPL3.0](https://img.shields.io/github/license/krtk-dev/translators?style=plat)](LICENSE) -->
 
 ![Typescript](https://img.shields.io/badge/Typescript-222222?style=for-the-badge&logo=Typescript&logoColor=#3178C6)
 ![React](https://img.shields.io/badge/React-222222?style=for-the-badge&logo=React&logoColor=#61DAFB)
