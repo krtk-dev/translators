@@ -23,7 +23,6 @@ const HomeScreenLanguageSelector = () => {
     reverseLanguage,
     updateToLanguage,
     updateFromLanguage,
-    loading,
   } = useContext(TranslateContext);
 
   const [fromMenuVisible, setFromMenuVisible] = useState(false);
@@ -47,18 +46,9 @@ const HomeScreenLanguageSelector = () => {
         </LanguageSelectMenu>
       </Pressable>
 
-      {loading ? (
-        <View style={styles.reverseButton}>
-          <ActivityIndicator size="small" color={COLORS.red} />
-        </View>
-      ) : (
-        <BorderlessButton
-          onPress={reverseLanguage}
-          style={styles.reverseButton}
-        >
-          <Icon size={24} color={COLORS.red} name="compare-arrows" />
-        </BorderlessButton>
-      )}
+      <BorderlessButton onPress={reverseLanguage} style={styles.reverseButton}>
+        <Icon size={24} color={COLORS.red} name="compare-arrows" />
+      </BorderlessButton>
 
       <Pressable
         onPress={() => setToMenuVisible(true)}

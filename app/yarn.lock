@@ -5768,10 +5768,10 @@ react-native-status-bar-height@^2.6.0:
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.6.0.tgz#b6afd25b6e3d533c43d0fcdcfd5cafd775592cea"
   integrity sha512-z3SGLF0mHT+OlJDq7B7h/jXPjWcdBT3V14Le5L2PjntjjWM3+EJzq2BcXDwV+v67KFNJic5pgA26cCmseYek6w==
 
-react-native-translator@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-translator/-/react-native-translator-1.1.1.tgz#79ad8eaa2b02fdc9574162886aab27a887686685"
-  integrity sha512-IsHP5IXMXyVpTPtQKUzlSHhQN7nATus3nOOJEWmex4el97ZjLXCzp4tq8fog35RJ4tuuJpwPbLYyGjmOYJ9lTA==
+react-native-translator@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-translator/-/react-native-translator-1.1.2.tgz#3c989ca9f8d27e426a2c898eb10936582f07d499"
+  integrity sha512-pWGUZ/nFRrbTs83PV4ci0tQ7lvdRF87KAI2g+M5ibhP8jJPllRItQpkks+Ie4CweKgxWZ0FWdZB+YmmbGO3Q/Q==
 
 react-native-tts@^4.1.0:
   version "4.1.0"

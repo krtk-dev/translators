@@ -25,10 +25,8 @@ export type TranslateContextType = {
   scrollViewRef: React.RefObject<ScrollView>;
   text: string;
   onChangeText: (text: string) => void;
-  loading: boolean;
   fromLanguage: LanguageCode<'google'>;
   toLanguage: LanguageCode<'google'>;
-  translatedData: TranslatedData;
   clear: () => void;
   reverseLanguage: () => void;
   updateFromLanguage: (language: LanguageCode<'google'>) => void;
@@ -41,16 +39,8 @@ export const TranslateContext = createContext<TranslateContextType>({} as any);
 
 const TranslateProvider: React.FC = ({children}) => {
   const {addHistory} = useContext(HistoryContext);
-
   const scrollViewRef = useRef<ScrollView>(null); // 홈화면 스크롤뷰
   const [text, setText] = useState('');
-  const [translatedData, setTranslatedData] = useState<TranslatedData>({
-    google: null,
-    kakao: null,
-    papago: null,
-  });
-  const [count, setCount] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [fromLanguage, setFromLanguage] =
     useState<LanguageCode<'google'>>('ko');
   const [toLanguage, setToLanguage] = useState<LanguageCode<'google'>>('en');
@@ -58,21 +48,7 @@ const TranslateProvider: React.FC = ({children}) => {
   const clear = useCallback(() => {
     // 초기화
     setText('');
-    setTranslatedData({google: null, kakao: null, papago: null});
   }, []);
-
-  const translate = useCallback(async () => {
-    //------------- 실행 조건에 부합하는지 확인 -------------//
-    if (loading) return; // 로딩중이면 실행안함
-    if (!text) return; // 빈글은 번역안함
-    //------------- 실행 전 -------------//
-    Keyboard.dismiss(); // 키보드 닫기
-    addHistory({text, fromLanguage, toLanguage}); // 검색기록에 추가
-    setTranslatedData({google: null, kakao: null, papago: null}); // 초기화
-    setCount(prev => prev + 1); // 리뷰용 카운트
-    //------------- 실행 요청 -------------//
-    setLoading(true); // 로딩 시작
-  }, [addHistory, fromLanguage, loading, text, toLanguage, count]);
 
   const reverseLanguage = useCallback(() => {
     // 원문과 번역할 언어를 서로 바꿈
@@ -87,7 +63,7 @@ const TranslateProvider: React.FC = ({children}) => {
       scrollViewRef.current?.scrollTo({y: 0, animated: true});
       // setImmediate(translate); // translate시킴
     },
-    [translate, reverseLanguage, scrollViewRef],
+    [reverseLanguage, scrollViewRef],
   );
 
   const updateFromLanguage = useCallback(
@@ -104,6 +80,7 @@ const TranslateProvider: React.FC = ({children}) => {
     (language: LanguageCode<'google'>) => {
       if (fromLanguage === language) setFromLanguage(toLanguage); // 같은 언어 끼리 번역 방지
       setToLanguage(language);
+      if (Math.random() < 0.05) InAppReview.RequestInAppReview(); // 20분의 1
     },
     [toLanguage, fromLanguage],
   );
@@ -115,9 +92,12 @@ const TranslateProvider: React.FC = ({children}) => {
     setText(history.text);
     scrollViewRef.current?.scrollTo({y: 0, animated: true});
   }, []);
-
   useEffect(() => {
-    Tts.setDefaultLanguage(languageTo.ttsLanguage(toLanguage));
+    try {
+      Tts.setDefaultLanguage(languageTo.ttsLanguage(toLanguage));
+    } catch (error) {
+      Tts.setDefaultLanguage('en-IE');
+    }
   }, [toLanguage]);
 
   const contextValue = useMemo<TranslateContextType>(
@@ -125,30 +105,24 @@ const TranslateProvider: React.FC = ({children}) => {
       scrollViewRef,
       text,
       onChangeText: t => setText(t),
-      loading,
       clear,
       fromLanguage,
       toLanguage,
-      translatedText: translatedData,
-      translate,
       reverseLanguage,
       reverseTranslate,
       updateFromLanguage,
       updateToLanguage,
       applyHistory,
-      translatedData,
     }),
     [
       scrollViewRef,
+      text,
+      setText,
       clear,
       fromLanguage,
-      loading,
+      toLanguage,
       reverseLanguage,
       reverseTranslate,
-      text,
-      toLanguage,
-      translate,
-      translatedData,
       updateFromLanguage,
       updateToLanguage,
       applyHistory,

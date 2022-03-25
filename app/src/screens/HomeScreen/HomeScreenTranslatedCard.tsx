@@ -46,7 +46,9 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
       <Typography style={styles.title}>
         {translatorType.toUpperCase()}
       </Typography>
-      <Typography style={styles.text}>{result}</Typography>
+      <Typography selectable style={styles.text}>
+        {result}
+      </Typography>
       <View style={styles.footer}>
         <BorderlessButton onPress={onTTS} style={styles.icon}>
           <Icon color={COLORS.white} size={22} name="volume-up" />

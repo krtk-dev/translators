@@ -5575,7 +5575,7 @@
     "path": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-status-bar-height",
     "licenseFile": "/Users/hyun/Github/krtk/translators/app/node_modules/react-native-status-bar-height/LICENSE"
   },
-  "react-native-translator@1.1.1": {
+  "react-native-translator@1.1.2": {
     "licenses": "MIT",
     "repository": "https://github.com/koreanthinker/react-native-translator",
     "publisher": "KoreanThinker",

@@ -11,7 +11,7 @@ const HomeScreenInput = () => {
   return (
     <View style={styles.container}>
       <BaseInput
-        placeholder="최대 1000글자까지 번역가능"
+        placeholder="최대 5000글자까지 번역가능"
         multiline
         value={text}
         onChangeText={onChangeText}
