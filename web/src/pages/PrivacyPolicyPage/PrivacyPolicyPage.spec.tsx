@@ -2,9 +2,9 @@ import { render } from '@testing-library/react';
 import PrivacyPolicyPage from '.';
 
 describe('<PrivacyPolicyPage />', () => {
-  it('한글과 영문을 지원합니다.', async () => {
+  it('한글을 지원합니다.', async () => {
     const { container } = render(<PrivacyPolicyPage />);
     expect(container.innerHTML).toContain('개인정보처리방침');
-    expect(container.innerHTML).toContain('PrivacyPolicy');
+    // expect(container.innerHTML).toContain('PrivacyPolicy');
   });
 });
