@@ -1,17 +1,23 @@
-import {StyleSheet, View} from 'react-native';
-import React, {useContext} from 'react';
+import {Pressable, StyleSheet, TextInput} from 'react-native';
+import React, {useContext, useRef} from 'react';
 import BaseInput from '../../components/BaseInput';
 import {TranslateContext} from '../../context/TranslateContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import BorderlessButton from '../../components/BorderlessButton';
 
 const HomeScreenInput = () => {
+  const inputRef = useRef<TextInput>(null);
+
   const {text, onChangeText, clear, applyClipboard} =
     useContext(TranslateContext);
 
   return (
-    <View style={styles.container}>
+    <Pressable
+      onPress={() => inputRef.current?.focus()}
+      style={styles.container}
+    >
       <BaseInput
+        ref={inputRef}
         placeholder="최대 5000글자까지 번역가능"
         multiline
         value={text}
@@ -28,7 +34,7 @@ const HomeScreenInput = () => {
           <Icon name="clipboard-arrow-up-outline" color="#bbb" size={16} />
         )}
       </BorderlessButton>
-    </View>
+    </Pressable>
   );
 };
 
