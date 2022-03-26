@@ -26,7 +26,7 @@ export const korean = (language: Language) => {
 };
 
 export const kakaoLanguage = (language: Language) => language;
-export const naverLanguage = (language: Language) => {
+export const papagoLanguage = (language: Language) => {
   switch (language) {
     case 'kr':
       return 'ko';
@@ -80,5 +80,5 @@ export default {
   ttsLanguage,
   googleLanguage,
   kakaoLanguage,
-  naverLanguage,
+  papagoLanguage,
 };

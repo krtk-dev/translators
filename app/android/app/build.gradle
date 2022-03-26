@@ -134,8 +134,8 @@ android {
         applicationId "com.koreanthinker.translators"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 20
-        versionName "2.0.0"
+        versionCode 22
+        versionName "2.1.0"
     }
     splits {
         abi {

@@ -2,23 +2,31 @@ import {StyleSheet, View} from 'react-native';
 import React, {useContext} from 'react';
 import BaseInput from '../../components/BaseInput';
 import {TranslateContext} from '../../context/TranslateContext';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import BorderlessButton from '../../components/BorderlessButton';
 
 const HomeScreenInput = () => {
-  const {text, onChangeText, clear} = useContext(TranslateContext);
+  const {text, onChangeText, clear, applyClipboard} =
+    useContext(TranslateContext);
 
   return (
     <View style={styles.container}>
       <BaseInput
-        placeholder="최대 1000글자까지 번역가능"
+        placeholder="최대 5000글자까지 번역가능"
         multiline
         value={text}
         onChangeText={onChangeText}
         style={styles.input}
       />
-      <BorderlessButton onPress={clear} style={styles.claerBtn}>
-        {!!text && <Icon name="highlight-off" color="#bbb" size={16} />}
+      <BorderlessButton
+        onPress={text ? clear : applyClipboard}
+        style={styles.claerBtn}
+      >
+        {text ? (
+          <Icon name="close-circle-outline" color="#bbb" size={16} />
+        ) : (
+          <Icon name="clipboard-arrow-up-outline" color="#bbb" size={16} />
+        )}
       </BorderlessButton>
     </View>
   );

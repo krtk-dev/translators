@@ -13,8 +13,8 @@ import languageTo from '../../util/languageTo';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import BorderlessButton from '../../components/BorderlessButton';
 import {Menu, MenuItem} from 'react-native-material-menu';
-import {Language} from '../../constants/types';
-import {LANGUAGES} from '../../constants/values';
+import {LANGUAGES_CODES} from '../../constants/values';
+import {LanguageCode} from 'react-native-translator';
 
 const HomeScreenLanguageSelector = () => {
   const {
@@ -23,7 +23,6 @@ const HomeScreenLanguageSelector = () => {
     reverseLanguage,
     updateToLanguage,
     updateFromLanguage,
-    loading,
   } = useContext(TranslateContext);
 
   const [fromMenuVisible, setFromMenuVisible] = useState(false);
@@ -47,18 +46,9 @@ const HomeScreenLanguageSelector = () => {
         </LanguageSelectMenu>
       </Pressable>
 
-      {loading ? (
-        <View style={styles.reverseButton}>
-          <ActivityIndicator size="small" color={COLORS.red} />
-        </View>
-      ) : (
-        <BorderlessButton
-          onPress={reverseLanguage}
-          style={styles.reverseButton}
-        >
-          <Icon size={24} color={COLORS.red} name="compare-arrows" />
-        </BorderlessButton>
-      )}
+      <BorderlessButton onPress={reverseLanguage} style={styles.reverseButton}>
+        <Icon size={24} color={COLORS.red} name="compare-arrows" />
+      </BorderlessButton>
 
       <Pressable
         onPress={() => setToMenuVisible(true)}
@@ -82,7 +72,7 @@ const HomeScreenLanguageSelector = () => {
 interface LanguageSelectMenu {
   visible: boolean;
   onRequestClose: () => void;
-  onSelect: (language: Language) => void;
+  onSelect: (language: LanguageCode<'google'>) => void;
 }
 
 const LanguageSelectMenu: React.FC<LanguageSelectMenu> = ({
@@ -93,7 +83,7 @@ const LanguageSelectMenu: React.FC<LanguageSelectMenu> = ({
 }) => {
   return (
     <Menu visible={visible} anchor={children} onRequestClose={onRequestClose}>
-      {LANGUAGES.map(language => (
+      {LANGUAGES_CODES.map(language => (
         <MenuItem
           key={language}
           onPress={() => {

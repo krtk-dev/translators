@@ -11,7 +11,7 @@ import languageTo from '../util/languageTo';
 export interface TranslatedData {
   google: string;
   kakao: string;
-  naver: string;
+  papago: string;
 }
 
 export type TranslateContextType = {
@@ -35,7 +35,7 @@ const TranslateProvider: React.FC = ({ children }) => {
   const [translatedData, setTranslatedData] = useState<TranslatedData>({
     google: '',
     kakao: '',
-    naver: '',
+    papago: '',
   });
   const [fromLanguage, setFromLanguage] = useState<Language>('kr');
   const [toLanguage, setToLanguage] = useState<Language>('en');
@@ -45,13 +45,13 @@ const TranslateProvider: React.FC = ({ children }) => {
       setTranslatedData({
         google: '로딩중...',
         kakao: '로딩중...',
-        naver: '로딩중...',
+        papago: '로딩중...',
       });
     } else {
       setTranslatedData({
         google: '',
         kakao: '',
-        naver: '',
+        papago: '',
       });
     }
   }, [text]);
@@ -124,7 +124,7 @@ const TranslateProvider: React.FC = ({ children }) => {
     const _timer = setTimeout(() => {
       onTranslated({
         google: `번역완료!`,
-        naver: `(${text})를(을) ${languageTo.korean(
+        papago: `(${text})를(을) ${languageTo.korean(
           toLanguage,
         )}로 번역한 결과는`,
         kakao: '오른쪽 상단 앱스토어 버튼을 눌러, 앱애서 확인해주세요!',

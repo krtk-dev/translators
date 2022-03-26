@@ -1,3 +1,4 @@
+import Clipboard from '@react-native-community/clipboard';
 import React, {
   createContext,
   useCallback,
@@ -7,34 +8,32 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {Keyboard, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import InAppReview from 'react-native-in-app-review';
+import {LanguageCode} from 'react-native-translator';
 import Tts from 'react-native-tts';
-import TranslatorCrawler from '../components/TranslatorCrawler';
-import {History, Language} from '../constants/types';
+import {History} from '../constants/types';
 import languageTo from '../util/languageTo';
 import {HistoryContext} from './HistoryContext';
 
 export interface TranslatedData {
   google: string | null | Error;
   kakao: string | null | Error;
-  naver: string | null | Error;
+  papago: string | null | Error;
 }
 
 export type TranslateContextType = {
   scrollViewRef: React.RefObject<ScrollView>;
   text: string;
   onChangeText: (text: string) => void;
-  loading: boolean;
-  fromLanguage: Language;
-  toLanguage: Language;
-  translatedData: TranslatedData;
+  fromLanguage: LanguageCode<'google'>;
+  toLanguage: LanguageCode<'google'>;
   clear: () => void;
-  translate: () => void;
   reverseLanguage: () => void;
-  updateFromLanguage: (language: Language) => void;
-  updateToLanguage: (language: Language) => void;
+  updateFromLanguage: (language: LanguageCode<'google'>) => void;
+  updateToLanguage: (language: LanguageCode<'google'>) => void;
   reverseTranslate: (text: string) => void;
+  applyClipboard: () => void;
   applyHistory: (history: History) => void;
 };
 
@@ -42,47 +41,17 @@ export const TranslateContext = createContext<TranslateContextType>({} as any);
 
 const TranslateProvider: React.FC = ({children}) => {
   const {addHistory} = useContext(HistoryContext);
-
   const scrollViewRef = useRef<ScrollView>(null); // 홈화면 스크롤뷰
   const [text, setText] = useState('');
-  const [translatedData, setTranslatedData] = useState<TranslatedData>({
-    google: null,
-    kakao: null,
-    naver: null,
-  });
-  const [count, setCount] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [fromLanguage, setFromLanguage] = useState<Language>('kr');
-  const [toLanguage, setToLanguage] = useState<Language>('en');
+  const [fromLanguage, setFromLanguage] =
+    useState<LanguageCode<'google'>>('ko');
+  const [toLanguage, setToLanguage] = useState<LanguageCode<'google'>>('en');
+  const [addHistoryTimer, setAddHistoryTimer] = useState<NodeJS.Timeout>();
 
   const clear = useCallback(() => {
     // 초기화
     setText('');
-    setTranslatedData({google: null, kakao: null, naver: null});
   }, []);
-
-  const translate = useCallback(async () => {
-    //------------- 실행 조건에 부합하는지 확인 -------------//
-    if (loading) return; // 로딩중이면 실행안함
-    if (!text) return; // 빈글은 번역안함
-    //------------- 실행 전 -------------//
-    Keyboard.dismiss(); // 키보드 닫기
-    addHistory({text, fromLanguage, toLanguage}); // 검색기록에 추가
-    setTranslatedData({google: null, kakao: null, naver: null}); // 초기화
-    setCount(prev => prev + 1); // 리뷰용 카운트
-    //------------- 실행 요청 -------------//
-    setLoading(true); // 로딩 시작
-  }, [addHistory, fromLanguage, loading, text, toLanguage, count]);
-
-  const onTranslated = useCallback(
-    (data: TranslatedData) => {
-      //------------- 실행 후 -------------//
-      setLoading(false); // 로딩 끝
-      setTranslatedData(data);
-      if (count !== 0 && count % 10 === 0) InAppReview.RequestInAppReview();
-    },
-    [count],
-  );
 
   const reverseLanguage = useCallback(() => {
     // 원문과 번역할 언어를 서로 바꿈
@@ -97,12 +66,12 @@ const TranslateProvider: React.FC = ({children}) => {
       scrollViewRef.current?.scrollTo({y: 0, animated: true});
       // setImmediate(translate); // translate시킴
     },
-    [translate, reverseLanguage, scrollViewRef],
+    [reverseLanguage, scrollViewRef],
   );
 
   const updateFromLanguage = useCallback(
     // 원문 언어 변경
-    (language: Language) => {
+    (language: LanguageCode<'google'>) => {
       if (toLanguage === language) setToLanguage(fromLanguage); // 같은 언어 끼리 번역 방지
       setFromLanguage(language);
     },
@@ -111,9 +80,10 @@ const TranslateProvider: React.FC = ({children}) => {
 
   const updateToLanguage = useCallback(
     // 변역 할 언어 변경
-    (language: Language) => {
+    (language: LanguageCode<'google'>) => {
       if (fromLanguage === language) setFromLanguage(toLanguage); // 같은 언어 끼리 번역 방지
       setToLanguage(language);
+      if (Math.random() < 0.05) InAppReview.RequestInAppReview(); // 20분의 1
     },
     [toLanguage, fromLanguage],
   );
@@ -126,54 +96,63 @@ const TranslateProvider: React.FC = ({children}) => {
     scrollViewRef.current?.scrollTo({y: 0, animated: true});
   }, []);
 
+  const applyClipboard = useCallback(async () => {
+    const content = await Clipboard.getString();
+    setText(content);
+  }, []);
+
   useEffect(() => {
-    Tts.setDefaultLanguage(languageTo.ttsLanguage(toLanguage));
+    try {
+      Tts.setDefaultLanguage(languageTo.ttsLanguage(toLanguage));
+    } catch (error) {
+      Tts.setDefaultLanguage('en-IE');
+    }
   }, [toLanguage]);
+
+  useEffect(() => {
+    // 3초동안 새로운 입력이 없으면 최근 검색에 추가
+    if (addHistoryTimer) clearTimeout(addHistoryTimer);
+    if (!text) return;
+    const newTimer = setTimeout(
+      () => addHistory({fromLanguage, toLanguage, text}),
+      3000,
+    );
+    setAddHistoryTimer(newTimer);
+  }, [text, fromLanguage, toLanguage]);
 
   const contextValue = useMemo<TranslateContextType>(
     () => ({
       scrollViewRef,
       text,
       onChangeText: t => setText(t),
-      loading,
       clear,
       fromLanguage,
       toLanguage,
-      translatedText: translatedData,
-      translate,
       reverseLanguage,
       reverseTranslate,
       updateFromLanguage,
       updateToLanguage,
       applyHistory,
-      translatedData,
+      applyClipboard,
     }),
     [
       scrollViewRef,
+      text,
+      setText,
       clear,
       fromLanguage,
-      loading,
+      toLanguage,
       reverseLanguage,
       reverseTranslate,
-      text,
-      toLanguage,
-      translate,
-      translatedData,
       updateFromLanguage,
       updateToLanguage,
       applyHistory,
+      applyClipboard,
     ],
   );
 
   return (
     <TranslateContext.Provider value={contextValue}>
-      <TranslatorCrawler
-        fromLanguage={fromLanguage}
-        toLanguage={toLanguage}
-        loading={loading}
-        text={text}
-        onTranslated={onTranslated}
-      />
       {children}
     </TranslateContext.Provider>
   );

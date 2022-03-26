@@ -18,11 +18,11 @@ describe('util/languageTo', () => {
     );
     expect(kakaoLanguage.every(v => !!v)).toBeTruthy();
   });
-  it('naverLanguage', () => {
-    const naverLanguage = LANGUAGES.map(language =>
-      languageTo.naverLanguage(language),
+  it('papagoLanguage', () => {
+    const papagoLanguage = LANGUAGES.map(language =>
+      languageTo.papagoLanguage(language),
     );
-    expect(naverLanguage.every(v => !!v)).toBeTruthy();
+    expect(papagoLanguage.every(v => !!v)).toBeTruthy();
   });
   it('googleLanguage', () => {
     const googleLanguage = LANGUAGES.map(language =>

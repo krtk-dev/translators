@@ -60,7 +60,7 @@ describe('TranslateContext', () => {
       const output = screen.getByRole('output');
       const translated = JSON.parse(output.innerHTML);
       expect(translated).toHaveProperty('google');
-      expect(translated).toHaveProperty('naver');
+      expect(translated).toHaveProperty('papago');
       expect(translated).toHaveProperty('kakao');
     });
   });
@@ -113,7 +113,7 @@ describe('TranslateContext', () => {
       const output = screen.getByRole('output');
       const translated = JSON.parse(output.innerHTML);
       expect(translated).toHaveProperty('google');
-      expect(translated).toHaveProperty('naver');
+      expect(translated).toHaveProperty('papago');
       expect(translated).toHaveProperty('kakao');
       const prevGoogleTranslated = translated.google;
       // reverseTranslate 실행
