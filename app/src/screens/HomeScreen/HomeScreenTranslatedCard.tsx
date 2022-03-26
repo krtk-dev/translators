@@ -46,7 +46,7 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
       <Typography style={styles.title}>
         {translatorType.toUpperCase()}
       </Typography>
-      <Typography selectable style={styles.text}>
+      <Typography selectable style={styles.result}>
         {result}
       </Typography>
       <View style={styles.footer}>
@@ -54,7 +54,7 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
           <Icon color={COLORS.white} size={22} name="volume-up" />
         </BorderlessButton>
         <BorderlessButton
-          onPress={() => Clipboard.setString(text)}
+          onPress={() => Clipboard.setString(result)}
           style={styles.icon}
         >
           <Icon color={COLORS.white} size={20} name="content-copy" />
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  text: {
+  result: {
     flex: 1,
     fontSize: 16,
     color: COLORS.white,
