@@ -32,13 +32,11 @@ const HomeScreenLanguageSelector = () => {
     <View style={styles.container}>
       <Pressable
         onPress={() => setFromMenuVisible(true)}
-        style={styles.languageButton}
-      >
+        style={styles.languageButton}>
         <LanguageSelectMenu
           visible={fromMenuVisible}
           onRequestClose={() => setFromMenuVisible(false)}
-          onSelect={updateFromLanguage}
-        >
+          onSelect={updateFromLanguage}>
           <View style={styles.languageContainer}>
             <Typography>{languageTo.korean(fromLanguage)}</Typography>
             <Icon size={24} color={COLORS.red} name="arrow-drop-down" />
@@ -52,13 +50,11 @@ const HomeScreenLanguageSelector = () => {
 
       <Pressable
         onPress={() => setToMenuVisible(true)}
-        style={styles.languageButton}
-      >
+        style={styles.languageButton}>
         <LanguageSelectMenu
           visible={toMenuVisible}
           onRequestClose={() => setToMenuVisible(false)}
-          onSelect={updateToLanguage}
-        >
+          onSelect={updateToLanguage}>
           <View style={styles.languageContainer}>
             <Typography>{languageTo.korean(toLanguage)}</Typography>
             <Icon size={24} color={COLORS.red} name="arrow-drop-down" />
@@ -89,8 +85,7 @@ const LanguageSelectMenu: React.FC<LanguageSelectMenu> = ({
           onPress={() => {
             onSelect(language);
             onRequestClose();
-          }}
-        >
+          }}>
           {languageTo.korean(language)}
         </MenuItem>
       ))}

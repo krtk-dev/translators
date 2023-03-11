@@ -12,13 +12,12 @@ const HomeDrawerNavigation = () => {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
-      drawerContent={() => <HomeDrawerScreen />}
+      drawerContent={HomeDrawerScreen}
       screenOptions={{
         drawerPosition: 'left',
         drawerType: 'front',
         headerShown: false,
-      }}
-    >
+      }}>
       <Drawer.Screen name="Home" component={HomeScreen} />
     </Drawer.Navigator>
   );

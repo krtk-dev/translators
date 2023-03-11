@@ -16,8 +16,7 @@ const OssScreenOssCard: React.FC<OssScreenOssCardProps> = props => {
   return (
     <BaseButton
       onPress={() => Linking.openURL(repository)}
-      style={styles.container}
-    >
+      style={styles.container}>
       <Typography style={styles.name}>{name}</Typography>
       <Typography style={styles.repository}>{repository}</Typography>
       <Typography style={styles.licenses}>{licenses}</Typography>
