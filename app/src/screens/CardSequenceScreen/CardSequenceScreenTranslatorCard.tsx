@@ -17,8 +17,7 @@ const CardSequenceTranslatorCard: React.FC<
       style={[
         styles.container,
         {backgroundColor: isActive ? '#ffffff88' : 'transparent'},
-      ]}
-    >
+      ]}>
       <Typography style={styles.text}>{item.toUpperCase()}</Typography>
       <Pressable style={styles.iconContainer} onPressIn={drag}>
         <Icon name="drag-handle" size={20} color={COLORS.white} />

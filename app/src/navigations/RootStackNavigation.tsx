@@ -28,8 +28,7 @@ const RootStackNavigation = () => {
       screenOptions={{
         headerShown: false,
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      }}
-    >
+      }}>
       <RootStack.Screen name="HomeDrawer" component={HomeDrawerNavigation} />
       <RootStack.Screen name="Full" component={FullScreen} />
       <RootStack.Screen name="CardSequence" component={CardSequenceScreen} />

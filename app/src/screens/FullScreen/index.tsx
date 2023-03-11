@@ -19,8 +19,7 @@ const FullScreen = () => {
   return (
     <Pressable
       onPress={goBack}
-      style={[styles.container, {backgroundColor: color}]}
-    >
+      style={[styles.container, {backgroundColor: color}]}>
       <View style={styles.textContainer}>
         <AutoSizeText style={styles.text} mode={ResizeTextMode.group}>
           {content}

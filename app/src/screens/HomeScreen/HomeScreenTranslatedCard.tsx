@@ -55,8 +55,7 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
         </BorderlessButton>
         <BorderlessButton
           onPress={() => Clipboard.setString(result)}
-          style={styles.icon}
-        >
+          style={styles.icon}>
           <Icon color={COLORS.white} size={20} name="content-copy" />
         </BorderlessButton>
         <Menu
@@ -64,21 +63,18 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
           anchor={
             <BorderlessButton
               onPress={() => setMoreVisible(true)}
-              style={styles.icon}
-            >
+              style={styles.icon}>
               <Icon color={COLORS.white} size={24} name="more-vert" />
             </BorderlessButton>
           }
-          onRequestClose={() => setMoreVisible(false)}
-        >
+          onRequestClose={() => setMoreVisible(false)}>
           <MenuItem
             onPress={() => {
               setMoreVisible(false);
               setTimeout(() => {
                 Share.share({message: result});
               }, 1000);
-            }}
-          >
+            }}>
             공유
           </MenuItem>
           <MenuItem
@@ -88,16 +84,14 @@ const HomeScreenTranslatedCard: React.FC<HomeScreenTranslatedCardProps> = ({
                 color: COLORS[translatorType],
                 content: result,
               });
-            }}
-          >
+            }}>
             전체화면
           </MenuItem>
           <MenuItem
             onPress={() => {
               setMoreVisible(false);
               reverseTranslate(result);
-            }}
-          >
+            }}>
             역번역
           </MenuItem>
         </Menu>

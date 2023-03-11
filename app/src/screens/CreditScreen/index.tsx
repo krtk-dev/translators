@@ -13,9 +13,8 @@ const CreditScreen = () => {
   return (
     <View style={styles.container}>
       <BaseButton
-        onPress={() => Linking.openURL('mailto:coderhyun476@gmail.com')}
-        style={[styles.itemContainer, {marginTop: 16}]}
-      >
+        onPress={() => Linking.openURL('mailto:koreanthinker@gmail.com')}
+        style={[styles.itemContainer, {marginTop: 16}]}>
         <View style={styles.iconContainer}>
           <Icon name="email" size={20} color="white" />
         </View>
@@ -23,8 +22,7 @@ const CreditScreen = () => {
       </BaseButton>
       <BaseButton
         onPress={() => Linking.openURL('https://www.github.com/koreanthinker')}
-        style={styles.itemContainer}
-      >
+        style={styles.itemContainer}>
         <View style={styles.iconContainer}>
           <Icon name="account-circle" size={20} color="white" />
         </View>
@@ -38,8 +36,7 @@ const CreditScreen = () => {
       </BaseButton>
       <BaseButton
         onPress={() => InAppReview.RequestInAppReview()}
-        style={styles.itemContainer}
-      >
+        style={styles.itemContainer}>
         <View style={styles.iconContainer}>
           <Icon name="star" size={20} color="white" />
         </View>

@@ -24,8 +24,7 @@ const HomeScreen = () => {
         ref={scrollViewRef}
         style={{paddingHorizontal: 16}}
         overScrollMode="never"
-        showsVerticalScrollIndicator={false}
-      >
+        showsVerticalScrollIndicator={false}>
         <HomeScreenInput />
         {cardSequence.map(translatorType => (
           <HomeScreenTranslatedCard

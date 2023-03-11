@@ -31,8 +31,7 @@ const HistoryScreenHistoryCard: React.FC<History> = props => {
             applyHistory(props);
             navigate('Home');
           }}
-          style={styles.icon}
-        >
+          style={styles.icon}>
           <Icon color={COLORS.white} size={24} name="arrow-forward" />
         </BorderlessButton>
       </View>

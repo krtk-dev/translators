@@ -14,8 +14,7 @@ const HomeScreenInput = () => {
   return (
     <Pressable
       onPress={() => inputRef.current?.focus()}
-      style={styles.container}
-    >
+      style={styles.container}>
       <BaseInput
         ref={inputRef}
         placeholder="최대 5000글자까지 번역가능"
@@ -26,8 +25,7 @@ const HomeScreenInput = () => {
       />
       <BorderlessButton
         onPress={text ? clear : applyClipboard}
-        style={styles.claerBtn}
-      >
+        style={styles.claerBtn}>
         {text ? (
           <Icon name="close-circle-outline" color="#bbb" size={16} />
         ) : (

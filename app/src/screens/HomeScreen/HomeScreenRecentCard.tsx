@@ -18,8 +18,7 @@ const HomeScreenRecentCard: React.FC<History> = props => {
       <View style={styles.footer}>
         <BorderlessButton
           onPress={() => applyHistory(props)}
-          style={styles.icon}
-        >
+          style={styles.icon}>
           <Icon color={COLORS.white} size={24} name="arrow-forward" />
         </BorderlessButton>
       </View>

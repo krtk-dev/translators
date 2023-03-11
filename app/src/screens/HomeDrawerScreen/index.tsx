@@ -18,8 +18,7 @@ const HomeDrawerScreen = () => {
       </View>
       <BaseButton
         onPress={() => navigate('CardSequence')}
-        style={styles.tabContainer}
-      >
+        style={styles.tabContainer}>
         <Icon
           name="edit"
           color={COLORS.red}
@@ -30,8 +29,7 @@ const HomeDrawerScreen = () => {
       </BaseButton>
       <BaseButton
         onPress={() => navigate('History')}
-        style={styles.tabContainer}
-      >
+        style={styles.tabContainer}>
         <Icon
           name="library-books"
           color={COLORS.red}
@@ -42,8 +40,7 @@ const HomeDrawerScreen = () => {
       </BaseButton>
       <BaseButton
         onPress={() => navigate('Credit')}
-        style={styles.tabContainer}
-      >
+        style={styles.tabContainer}>
         <Icon
           name="subtitles"
           color={COLORS.red}
