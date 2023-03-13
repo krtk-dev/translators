@@ -15,5 +15,5 @@ export const LANGUAGES = [
 
 export const PLAYSTORE_URL =
   'https://play.google.com/store/apps/details?id=com.koreanthinker.translators';
-export const APPSTORE_URL = 'appstore';
+export const APPSTORE_URL = 'https://apps.apple.com/app/id1611097883';
 export const GITHUB_URL = 'https://github.com/krtk-dev/translators';
