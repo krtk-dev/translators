@@ -26,7 +26,7 @@
 
 - Web
 
-  [https://translators.kr](https://translators.kr)
+  [https://translators.kr](https://translators.kr) (Deprecated)
 - UI/UX
 
   [figma](https://www.figma.com/file/iEKYQOU8kCFyLE8voCKOCY/Translators?node-id=0%3A1)
