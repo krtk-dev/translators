@@ -17,7 +17,7 @@
 
 ### Introduction
 
-`3가지 번역기 비교하다`는 구글, 파파고, 카카오 번역기를 비교할 수 있는 모바일 앱서비스 입니다.
+`Compare 3 Translators` is a mobile app service that lets you compare Google, Papago, and Kakao Translate.
 
 ### Product
 - App
